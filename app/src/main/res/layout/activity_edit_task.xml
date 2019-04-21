@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".EditTaskActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_edittask">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_edittask_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textview_edittask_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fab_separation"
+                android:text="@string/edittask_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <EditText
+                android:id="@+id/edittext_edittask_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/edittask_name_hint"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_edittask_name" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/fab_separation"
+            android:layout_marginTop="@dimen/fab_separation"
+            android:background="?android:attr/listDivider" />
+
+
+        <Switch
+            android:id="@+id/switch_edittask_isended"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edittask_isended" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/fab_separation"
+            android:layout_marginTop="@dimen/fab_separation"
+            android:background="?android:attr/listDivider" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_edittask_project"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textview_edittask_project"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fab_separation"
+                android:text="@string/edittask_project_header"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <EditText
+                android:id="@+id/edittext_edittask_project"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/edittask_project_hint"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imagebutton_edittask_project"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_edittask_project" />
+
+            <ImageButton
+                android:id="@+id/imagebutton_edittask_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_edittask_project"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/fab_separation"
+            android:layout_marginTop="@dimen/fab_separation"
+            android:background="?android:attr/listDivider" />
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_edittask_deadline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textview_edittask_deadline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fab_separation"
+                android:text="@string/edittask_deadline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <EditText
+                android:id="@+id/edittext_edittask_deadline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/edittask_deadline_hint"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imagebutton_edittask_deadline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_edittask_deadline" />
+
+            <ImageButton
+                android:id="@+id/imagebutton_edittask_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_edittask_deadline"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/fab_separation"
+            android:layout_marginTop="@dimen/fab_separation"
+            android:background="?android:attr/listDivider" />
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_edittask_repeatible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textview_edittask_repeatible"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fab_separation"
+                android:text="@string/edittask_repeatable"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <EditText
+                android:id="@+id/edittext_edittask_repeatable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/edittask_repeatable_hint"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imagebutton_edittask_repetible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_edittask_repeatible" />
+
+            <ImageButton
+                android:id="@+id/imagebutton_edittask_repetible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_edittask_repeatible"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/fab_separation"
+            android:layout_marginTop="@dimen/fab_separation"
+            android:background="?android:attr/listDivider" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_edittask_reminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textview_edittask_reminder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fab_separation"
+                android:text="@string/edittask_reminder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <EditText
+                android:id="@+id/edittext_edittask_reminder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/edittask_reminder_hint"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imagebutton_edittask_reminder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_edittask_reminder" />
+
+            <ImageButton
+                android:id="@+id/imagebutton_edittask_reminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_edittask_reminder"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/fab_separation"
+            android:layout_marginTop="@dimen/fab_separation"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/textview_edittask_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edittask_notes_header" />
+
+        <Button
+            android:id="@+id/button_edittask_notes"
+            style="@style/ButtonLikeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/edittask_notes" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/fab_separation"
+            android:layout_marginTop="@dimen/fab_separation"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:id="@+id/textview_edittask_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edittask_group_header" />
+
+        <Button
+            android:id="@+id/button_edittask_group"
+            style="@style/ButtonLikeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/edittask_group" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/fab_separation"
+            android:layout_marginTop="@dimen/fab_separation"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_edittask_back"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/edittask_button_back" />
+
+            <Button
+                android:id="@+id/button_edittask_save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/edittask_button_save" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>
