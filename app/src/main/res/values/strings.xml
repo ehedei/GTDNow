@@ -6,7 +6,8 @@
     <string name="all_cancel">Cancelar</string>
     <string name="title_activity_edit_task">EditTaskActivity</string>
 
-
+    <string name="edittask_title_create">Nueva Tarea</string>
+    <string name="edittask_title_edit">Editar Tarea</string>
     <string name="edittask_name">Tarea a realizar:</string>
     <string name="edittask_name_hint">Introduzca tarea</string>
     <string name="edittask_isended">Tarea realizada</string>
@@ -20,9 +21,28 @@
     <string name="edittask_notes_header">Agregue notas:</string>
     <string name="edittask_repeatable">Repetición:</string>
     <string name="edittask_repeatable_hint">Sin determinar</string>
-
     <string name="edittask_reminder">Recordatorio:</string>
     <string name="edittask_reminder_hint">Sin determinar</string>
-    <string name="edittask_button_save">Guardar</string>
-    <string name="edittask_button_back">Volver</string>
+
+    <string name="editproject_title_create">Nuevo Proyecto</string>
+    <string name="editproject_title_edit">Editar Proyecto</string>
+    <string name="editproject_name">Proyecto</string>
+    <string name="editproject_name_hint">Introduzca nombre</string>
+    <string name="editproject_isended">Proyecto finalizado</string>
+    <string name="editproject_task_header">Añadir Tareas</string>
+    <string name="editproject_task">Tareas</string>
+    <string name="editproject_deadline">Fecha de finalización:</string>
+    <string name="editproject_deadline_hint">Sin determinar</string>
+
+    <string name="editgroup_title_create">Nueva Lista de Tareas</string>
+    <string name="editgroup_title_edit">Editar Lista de Tareas</string>
+    <string name="editgroup_name">Lista</string>
+    <string name="editgroup_name_hint">Introduzca nombre</string>
+    <string name="editgroup_task_header">Añadir Tareas</string>
+    <string name="editgroup_task">Tareas</string>
+
+
+
+    <string name="all_button_save">Guardar</string>
+    <string name="all_button_back">Volver</string>
 </resources>

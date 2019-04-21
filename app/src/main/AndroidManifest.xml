@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditTaskActivity"></activity>
+        <activity android:name=".EditGroupActivity" android:theme="@style/Theme.MaterialComponents.Light.Dialog"></activity>
+        <activity android:name=".EditProjectActivity" android:theme="@style/Theme.MaterialComponents.Light.Dialog"/>
+        <activity
+            android:name=".EditTaskActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

@@ -3,17 +3,17 @@ package es.iespuertodelacruz.dam.gtdnow;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class EditTaskActivity extends AppCompatActivity {
+public class EditGroupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_task);
+        setContentView(R.layout.activity_edit_group);
 
         if (savedInstanceState == null) {
-            setTitle(R.string.edittask_title_create);
+            setTitle(R.string.editgroup_title_create);
         } else {
-            setTitle(R.string.edittask_title_edit);
+            setTitle(R.string.editgroup_title_edit);
         }
 
     }

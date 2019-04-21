@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/padding_edittask">
+        android:padding="@dimen/padding_editactivities">
 
 
         <android.support.constraint.ConstraintLayout
@@ -33,7 +33,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:focusable="false"
                 android:hint="@string/edittask_name_hint"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -298,7 +297,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/edittask_group" />
+            android:text="@string/edittask_group"/>
 
         <View
             android:layout_width="match_parent"
@@ -316,15 +315,19 @@
                 android:id="@+id/button_edittask_back"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/fab_separation"
                 android:layout_weight="1"
-                android:text="@string/edittask_button_back" />
+                android:text="@string/all_button_back"
+                style="@style/ButtonCancel"
+                />
 
             <Button
                 android:id="@+id/button_edittask_save"
+                style="@style/ButtonAccept"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/edittask_button_save" />
+                android:text="@string/all_button_save" />
         </LinearLayout>
 
     </LinearLayout>
