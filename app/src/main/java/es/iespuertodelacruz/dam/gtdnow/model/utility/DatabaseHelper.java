@@ -16,6 +16,8 @@ public class DatabaseHelper {
     // Notes
     public static final String NOTE_ID = "note_pk";
     public static final String NOTE_TASK_ID = "task_fk";
+    public static final String NOTE_IS_COMPLETED = "isCompleted";
+
 
     // Places
     public static final String PLACE_ID = "place_pk";

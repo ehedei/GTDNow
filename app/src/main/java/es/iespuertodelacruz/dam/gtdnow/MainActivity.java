@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.dam.gtdnow;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,8 +11,19 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import es.iespuertodelacruz.dam.gtdnow.model.dao.PlaceDao;
+import es.iespuertodelacruz.dam.gtdnow.model.database.GTDNowDb;
+import es.iespuertodelacruz.dam.gtdnow.model.entity.Note;
+import es.iespuertodelacruz.dam.gtdnow.model.entity.Place;
 
 public class MainActivity extends AppCompatActivity {
+
+    private List<Note> notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), EditTaskActivity.class);
+                Intent i = new Intent(getApplicationContext(), SelectorTaskActivity.class);
                 startActivity(i);
 
             }
@@ -60,6 +72,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button b4 = findViewById(R.id.button4);
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SelectorNoteActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        Button b5 = findViewById(R.id.button5);
+        b5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SelectorPlaceActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+        GTDNowDb db = GTDNowDb.getDb(getApplicationContext());
+
+        notes = new ArrayList<>();
+        notes.add(new Note("Coco"));
+        notes.add(new Note("Maravillas"));
+        notes.add(new Note("Condones"));
+
+        notes.forEach(note -> note.setCompleted(true));
+
+
+        new InsertPlacesFromDb().execute(notes);
+
     }
 
     @Override
@@ -83,4 +127,18 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private class InsertPlacesFromDb extends AsyncTask<List<Note>, Integer, List<Note>> {
+        @Override
+        protected List<Note> doInBackground(List<Note>... notes) {
+            GTDNowDb.getDb(getApplicationContext()).noteDao().insertNote(notes[0]);
+            return notes[0];
+        }
+
+        @Override
+        protected void onPostExecute(List<Note> notes) {
+            Toast.makeText(getApplicationContext(), "Insertados " + notes.size(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

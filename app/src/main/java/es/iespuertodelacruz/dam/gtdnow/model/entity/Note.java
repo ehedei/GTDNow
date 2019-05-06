@@ -3,6 +3,7 @@ package es.iespuertodelacruz.dam.gtdnow.model.entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -44,6 +45,12 @@ public class Note {
 
     public Note() {
         noteId = UUID.randomUUID().toString();
+    }
+
+    @Ignore
+    public Note(String name) {
+        this();
+        this.setName(name);
     }
 
     @NonNull

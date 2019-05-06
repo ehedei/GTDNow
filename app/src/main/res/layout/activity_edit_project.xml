@@ -142,7 +142,7 @@
                 android:id="@+id/button_editproject_back"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/fab_separation"
+                android:layout_marginEnd="@dimen/fab_separation"
                 android:layout_weight="1"
                 android:text="@string/all_button_back"
                 style="@style/ButtonCancel"

@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">GTD Now!</string>
-    <string name="item_note_name">Nombre:</string>
-    <string name="item_note_isended">Finalizado</string>
     <string name="all_accept">Aceptar</string>
     <string name="all_cancel">Cancelar</string>
     <string name="title_activity_edit_task">EditTaskActivity</string>
@@ -15,6 +13,8 @@
     <string name="edittask_project_header">Incluir en algún projecto</string>
     <string name="edittask_group">Listas de tareas</string>
     <string name="edittask_project_hint">Proyectos</string>
+    <string name="edittask_place">Localización</string>
+    <string name="edittask_place_hint">Incluir una localización</string>
     <string name="edittask_deadline">Fecha de finalización:</string>
     <string name="edittask_deadline_hint">Sin determinar</string>
     <string name="edittask_notes">Notas</string>
@@ -42,7 +42,34 @@
     <string name="editgroup_task">Tareas</string>
 
 
+    <string name="editnote_title_create">Nueva Nota</string>
+    <string name="editnote_title_edit">Editar Nota</string>
+    <string name="editnote_name">Nota</string>
+    <string name="editnote_name_hint">Introduzca el texto de la nota</string>
+    <string name="editnote_isended">Nota finalizada</string>
 
+    <string name="editplace_title_create">Nueva Localización</string>
+    <string name="editplace_title_edit">Editar Localización</string>
+    <string name="editplace_name">Localización</string>
+    <string name="editplace_name_hint">Introduzca localización</string>
+
+
+    <!-- Items -->
+
+    <string name="item_deadline_name">Nombre:</string>
+    <string name="item_deadline_isended">Finalizado</string>
+
+    <string name="item_limitless_name">Nombre:</string>
+
+    <string name="item_task_name">Nombre:</string>
+    <string name="item_task_isended">Finalizado</string>
+    <string name="item_task_endline">Fecha finalización</string>
+
+    <string name="all_button_new">Nuevo</string>
     <string name="all_button_save">Guardar</string>
     <string name="all_button_back">Volver</string>
+
+    <string name="notes_all">Todas</string>
+    <string name="notes_notended">Sin finalizar</string>
+    <string name="notes_ended">Finalizadas</string>
 </resources>

@@ -9,11 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditGroupActivity" android:theme="@style/Theme.MaterialComponents.Light.Dialog"></activity>
-        <activity android:name=".EditProjectActivity" android:theme="@style/Theme.MaterialComponents.Light.Dialog"/>
-        <activity
-            android:name=".EditTaskActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -24,6 +19,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SelectorTaskActivity"></activity>
+        <activity android:name=".SelectorProjectActivity" />
+        <activity android:name=".SelectorPlaceActivity" />
+        <activity android:name=".SelectorNoteActivity" />
+        <activity android:name=".SelectorGroupActivity" />
+        <activity
+            android:name=".EditPlaceActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
+        <activity
+            android:name=".EditNoteActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
+        <activity
+            android:name=".EditGroupActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
+        <activity
+            android:name=".EditProjectActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
+        <activity
+            android:name=".EditTaskActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
+
     </application>
 
 </manifest>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_editactivities">
+
+    <Spinner
+        android:id="@+id/spinner_selector_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fab_separation"
+        android:layout_marginEnd="@dimen/fab_separation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_selector_groupby"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fab_separation"
+        android:layout_marginStart="@dimen/fab_separation"
+        android:layout_marginEnd="@dimen/fab_separation"
+        android:layout_marginBottom="@dimen/fab_separation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_selector_category" />
+
+    <Button
+        style="@style/ButtonLikeSpinner"
+        android:id="@+id/button_selector_new"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fab_separation"
+        android:layout_marginTop="@dimen/fab_separation"
+        android:layout_marginBottom="@dimen/fab_separation"
+        android:layout_marginEnd="@dimen/fab_separation"
+        android:layout_weight="1"
+        android:text="@string/all_button_new"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_selector_groupby" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_selector"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/fab_separation"
+        android:layout_marginTop="@dimen/fab_separation"
+        android:layout_marginEnd="@dimen/fab_separation"
+        android:layout_marginBottom="@dimen/fab_separation"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_selector_new"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fab_separation"
+        android:layout_marginTop="@dimen/fab_separation"
+        android:layout_marginEnd="@dimen/fab_separation"
+        android:layout_marginBottom="@dimen/fab_separation"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button_selector_back"
+            style="@style/ButtonCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/fab_separation"
+            android:layout_weight="1"
+            android:text="@string/all_button_back" />
+
+        <Button
+            android:id="@+id/button_selector_save"
+            style="@style/ButtonAccept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/all_button_save" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -104,6 +104,53 @@
 
         </android.support.constraint.ConstraintLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/fab_separation"
+            android:layout_marginTop="@dimen/fab_separation"
+            android:background="?android:attr/listDivider" />
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/layout_edittask_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textview_edittask_place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/fab_separation"
+                android:text="@string/edittask_place"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <EditText
+                android:id="@+id/edittext_edittask_place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/edittask_place_hint"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imagebutton_edittask_place"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_edittask_place" />
+
+            <ImageButton
+                android:id="@+id/imagebutton_edittask_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview_edittask_place"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+        </android.support.constraint.ConstraintLayout>
 
 
         <View
@@ -188,12 +235,12 @@
                 android:hint="@string/edittask_repeatable_hint"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imagebutton_edittask_repetible"
+                app:layout_constraintEnd_toStartOf="@+id/imagebutton_edittask_repeatable"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textview_edittask_repeatible" />
 
             <ImageButton
-                android:id="@+id/imagebutton_edittask_repetible"
+                android:id="@+id/imagebutton_edittask_repeatable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -315,7 +362,7 @@
                 android:id="@+id/button_edittask_back"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/fab_separation"
+                android:layout_marginEnd="@dimen/fab_separation"
                 android:layout_weight="1"
                 android:text="@string/all_button_back"
                 style="@style/ButtonCancel"
