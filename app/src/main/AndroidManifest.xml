@@ -3,6 +3,7 @@
     package="es.iespuertodelacruz.dam.gtdnow">
 
     <application
+        android:name=".application.GTDNow"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,25 +20,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SelectorTaskActivity"></activity>
-        <activity android:name=".SelectorProjectActivity" />
-        <activity android:name=".SelectorPlaceActivity" />
-        <activity android:name=".SelectorNoteActivity" />
-        <activity android:name=".SelectorGroupActivity" />
+        <activity android:name=".activity.DisplayerTaskActivity"></activity>
+        <activity android:name=".activity.SelectorProjectActivity" />
+        <activity android:name=".activity.SelectorPlaceActivity" />
+        <activity android:name=".activity.SelectorNoteActivity" />
+        <activity android:name=".activity.DisplayerGroupActivity" />
         <activity
-            android:name=".EditPlaceActivity"
+            android:name=".activity.EditPlaceActivity"
             android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
         <activity
-            android:name=".EditNoteActivity"
+            android:name=".activity.EditNoteActivity"
             android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
         <activity
-            android:name=".EditGroupActivity"
+            android:name=".activity.EditGroupActivity"
             android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
         <activity
-            android:name=".EditProjectActivity"
+            android:name=".activity.EditProjectActivity"
             android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
         <activity
-            android:name=".EditTaskActivity"
+            android:name=".activity.EditTaskActivity"
             android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
 
     </application>

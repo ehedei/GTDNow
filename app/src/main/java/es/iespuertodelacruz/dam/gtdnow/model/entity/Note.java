@@ -1,65 +1,39 @@
 package es.iespuertodelacruz.dam.gtdnow.model.entity;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
 
 import java.util.UUID;
 
-import es.iespuertodelacruz.dam.gtdnow.model.utility.DatabaseHelper;
+import io.realm.RealmObject;
+import io.realm.RealmResults;
+import io.realm.annotations.LinkingObjects;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
-import static android.arch.persistence.room.ForeignKey.CASCADE;
-
-
-
-@Entity (tableName = DatabaseHelper.TABLE_NOTE,
-        foreignKeys = {
-                @ForeignKey(
-                        entity = Task.class,
-                        parentColumns = DatabaseHelper.TASK_ID,
-                        childColumns = DatabaseHelper.NOTE_TASK_ID,
-                        onUpdate = CASCADE,
-                        onDelete = CASCADE)
-        },
-        indices = {@Index(DatabaseHelper.NOTE_TASK_ID)})
-
-
-public class Note {
+public class Note extends RealmObject implements NamedEntity{
 
     @PrimaryKey
-    @NonNull
-    @ColumnInfo(name = DatabaseHelper.NOTE_ID)
     private String noteId;
 
     private String name;
 
-    @ColumnInfo(name = DatabaseHelper.NOTE_TASK_ID)
-    private String taskId;
-
     private boolean isCompleted;
 
+    @LinkingObjects("notes")
+    private final RealmResults<Task> task;
 
     public Note() {
         noteId = UUID.randomUUID().toString();
+        task = null;
     }
 
-    @Ignore
     public Note(String name) {
         this();
         this.setName(name);
     }
 
-    @NonNull
+
     public String getNoteId() {
         return noteId;
-    }
-
-    public void setNoteId(@NonNull String noteId) {
-        this.noteId = noteId;
     }
 
     public String getName() {
@@ -70,19 +44,15 @@ public class Note {
         this.name = name;
     }
 
-    public String getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(String taskId) {
-        this.taskId = taskId;
-    }
-
     public boolean isCompleted() {
         return isCompleted;
     }
 
     public void setCompleted(boolean completed) {
         isCompleted = completed;
+    }
+
+    public RealmResults<Task> getTask() {
+        return task;
     }
 }

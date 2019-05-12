@@ -34,16 +34,19 @@
     <string name="editproject_deadline">Fecha de finalización:</string>
     <string name="editproject_deadline_hint">Sin determinar</string>
 
-    <string name="editgroup_title_create">Nueva Lista de Tareas</string>
-    <string name="editgroup_title_edit">Editar Lista de Tareas</string>
-    <string name="editgroup_name">Lista</string>
+    <string name="editgroup_message_create">Crear nueva Lista de Tareas</string>
+    <string name="editgroup_title_create">Nueva Lista</string>
+    <string name="editgroup_message_edit">Editar Lista de Tareas</string>
+    <string name="editgroup_name">Nombre</string>
     <string name="editgroup_name_hint">Introduzca nombre</string>
     <string name="editgroup_task_header">Añadir Tareas</string>
     <string name="editgroup_task">Tareas</string>
 
 
     <string name="editnote_title_create">Nueva Nota</string>
+    <string name="editnote_message_create">Crear nueva Nota para la Tarea</string>
     <string name="editnote_title_edit">Editar Nota</string>
+    <string name="editnote_message_edit">Crear Nota para la Tarea</string>
     <string name="editnote_name">Nota</string>
     <string name="editnote_name_hint">Introduzca el texto de la nota</string>
     <string name="editnote_isended">Nota finalizada</string>
@@ -72,4 +75,17 @@
     <string name="notes_all">Todas</string>
     <string name="notes_notended">Sin finalizar</string>
     <string name="notes_ended">Finalizadas</string>
+
+    <string name="selectortask_all">Todas</string>
+    <string name="selectortask_notended">Sin finalizar</string>
+    <string name="selectortask_ended">Finalizadas</string>
+
+
+    <!-- Messages -->
+    <string name="message_name_required">El nombre es requerido</string>
+
+    <!-- Context Menu -->
+    <string name="context_menu_delete">Eliminar</string>
+    <string name="context_menu_edit">Editar</string>
+
 </resources>

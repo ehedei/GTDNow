@@ -1,21 +1,16 @@
 package es.iespuertodelacruz.dam.gtdnow.model.entity;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
 
 import java.util.UUID;
 
-import es.iespuertodelacruz.dam.gtdnow.model.utility.DatabaseHelper;
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
 
-@Entity(tableName = DatabaseHelper.TABLE_PLACE)
-public class Place {
+public class Place extends RealmObject implements NamedEntity{
     @PrimaryKey
-    @NonNull
-    @ColumnInfo(name = DatabaseHelper.PLACE_ID)
     private String placeId;
 
     private String name;
@@ -24,24 +19,20 @@ public class Place {
 
     private double latitude;
 
+    private RealmList<Task> tasks;
+
 
     public Place() {
         placeId = UUID.randomUUID().toString();
     }
 
-    @Ignore
     public Place(String name) {
         this();
         this.setName(name);
     }
 
-    @NonNull
     public String getPlaceId() {
         return placeId;
-    }
-
-    public void setPlaceId(@NonNull String placeId) {
-        this.placeId = placeId;
     }
 
     public String getName() {
@@ -66,5 +57,13 @@ public class Place {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public RealmList<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(RealmList<Task> tasks) {
+        this.tasks = tasks;
     }
 }

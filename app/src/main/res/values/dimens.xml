@@ -1,9 +1,9 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="fab_separation">8dp</dimen>
-    <dimen name="padding_editactivities">10dp</dimen>
+    <dimen name="padding_editactivities">8dp</dimen>
     <dimen name="padding_buttons">20dp</dimen>
-    <dimen name="padding_items">20dp</dimen>
-    <dimen name="textsize_mainelement_items">24sp</dimen>
+    <dimen name="padding_items">18dp</dimen>
+    <dimen name="textsize_mainelement_items">20sp</dimen>
 
 </resources>

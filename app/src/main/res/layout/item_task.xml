@@ -10,8 +10,7 @@
         android:id="@+id/textview_item_task_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="@dimen/fab_separation"
         android:text="@string/item_task_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,20 +19,21 @@
         android:id="@+id/textview_item_task_ended"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="@dimen/fab_separation"
         android:text="@string/item_task_isended"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textview_item_task_namevalue"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:textSize="@dimen/textsize_mainelement_items"
+        android:layout_marginStart="@dimen/fab_separation"
+        android:layout_marginEnd="@dimen/fab_separation"
         android:text="Text"
+        android:textSize="@dimen/textsize_mainelement_items"
+        app:layout_constraintEnd_toStartOf="@+id/switch_item_task_ended"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_item_task_name" />
 
@@ -41,8 +41,7 @@
         android:id="@+id/switch_item_task_ended"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="@dimen/fab_separation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_item_task_ended"
         app:layout_constraintBottom_toBottomOf="@+id/textview_item_task_namevalue"/>
@@ -51,8 +50,7 @@
         android:id="@+id/textview_item_task_endline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="@dimen/fab_separation"
         android:text="@string/item_task_endline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview_item_task_namevalue"/>
@@ -61,9 +59,9 @@
         android:id="@+id/textview_item_task_endline_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="@dimen/fab_separation"
         android:text="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBaseline_toBaselineOf="@+id/textview_item_task_endline"/>
+
 </android.support.constraint.ConstraintLayout>

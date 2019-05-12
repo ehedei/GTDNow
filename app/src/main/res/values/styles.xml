@@ -32,4 +32,9 @@
     </style>
 
 
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/accent</item>
+        <item name="background">@color/primary_light</item>
+    </style>
+
 </resources>

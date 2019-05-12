@@ -1,8 +1,10 @@
-package es.iespuertodelacruz.dam.gtdnow;
+package es.iespuertodelacruz.dam.gtdnow.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import es.iespuertodelacruz.dam.gtdnow.R;
 
 public class EditPlaceActivity extends AppCompatActivity {
 

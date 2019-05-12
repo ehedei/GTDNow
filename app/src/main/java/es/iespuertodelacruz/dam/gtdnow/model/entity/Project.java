@@ -1,41 +1,35 @@
 package es.iespuertodelacruz.dam.gtdnow.model.entity;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverters;
-import android.support.annotation.NonNull;
 import java.util.Date;
 import java.util.UUID;
 
-import es.iespuertodelacruz.dam.gtdnow.model.utility.DatabaseHelper;
-import es.iespuertodelacruz.dam.gtdnow.model.utility.DateConverter;
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
-@Entity(tableName = DatabaseHelper.TABLE_PROJECT)
-public class Project {
+public class Project extends RealmObject implements NamedEntity{
     @PrimaryKey
-    @NonNull
-    @ColumnInfo(name = DatabaseHelper.PROJECT_ID)
     private String projectId;
 
     private String name;
 
     private boolean isCompleted;
 
-    @TypeConverters({DateConverter.class})
     private Date endTime;
+
+    private RealmList<Task> tasks;
 
     public Project() {
         projectId = UUID.randomUUID().toString();
     }
 
-    @NonNull
-    public String getProjectId() {
-        return projectId;
+    public Project(String name) {
+        this.name = name;
     }
 
-    public void setProjectId(@NonNull String projectId) {
-        this.projectId = projectId;
+    public String getProjectId() {
+        return projectId;
     }
 
     public String getName() {
@@ -60,5 +54,13 @@ public class Project {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public RealmList<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(RealmList<Task> tasks) {
+        this.tasks = tasks;
     }
 }

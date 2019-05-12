@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".EditTaskActivity">
+    tools:context=".activity.EditTaskActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -301,28 +301,6 @@
 
         </android.support.constraint.ConstraintLayout>
 
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="@dimen/fab_separation"
-            android:layout_marginTop="@dimen/fab_separation"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:id="@+id/textview_edittask_notes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/edittask_notes_header" />
-
-        <Button
-            android:id="@+id/button_edittask_notes"
-            style="@style/ButtonLikeSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/edittask_notes" />
 
 
         <View

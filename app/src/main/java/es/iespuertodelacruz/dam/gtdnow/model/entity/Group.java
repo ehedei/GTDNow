@@ -1,36 +1,37 @@
 package es.iespuertodelacruz.dam.gtdnow.model.entity;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
-
 import java.util.UUID;
 
-import es.iespuertodelacruz.dam.gtdnow.model.utility.DatabaseHelper;
 
-// TODO N:M y fk
+import io.realm.RealmObject;
+import io.realm.RealmResults;
+import io.realm.annotations.LinkingObjects;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
-@Entity(tableName = DatabaseHelper.TABLE_GROUP)
-public class Group {
+
+public class Group extends RealmObject implements NamedEntity {
     @PrimaryKey
-    @NonNull
-    @ColumnInfo(name = DatabaseHelper.GROUP_ID)
     private String groupId;
 
     private String name;
 
+    @LinkingObjects("groups")
+    private final RealmResults<Task> tasks;
+
     public Group() {
         groupId = UUID.randomUUID().toString();
+        tasks = null;
     }
 
-    @NonNull
+    public Group(String name) {
+        this();
+        this.setName(name);
+    }
+
+
     public String getGroupId() {
         return groupId;
-    }
-
-    public void setGroupId(@NonNull String groupId) {
-        this.groupId = groupId;
     }
 
     public String getName() {
@@ -39,5 +40,9 @@ public class Group {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public RealmResults<Task> getTasks() {
+        return tasks;
     }
 }

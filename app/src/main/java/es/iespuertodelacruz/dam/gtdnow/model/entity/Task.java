@@ -1,72 +1,44 @@
 package es.iespuertodelacruz.dam.gtdnow.model.entity;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverters;
-import android.support.annotation.NonNull;
 import java.util.Date;
 import java.util.UUID;
 
-import es.iespuertodelacruz.dam.gtdnow.model.utility.DatabaseHelper;
-import es.iespuertodelacruz.dam.gtdnow.model.utility.DateConverter;
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
-import static android.arch.persistence.room.ForeignKey.CASCADE;
-import static android.arch.persistence.room.ForeignKey.SET_NULL;
 
-
-// TODO M:N
-@Entity(tableName = DatabaseHelper.TABLE_TASK,
-        foreignKeys = {
-                @ForeignKey(
-                    entity = Project.class,
-                    parentColumns = DatabaseHelper.PROJECT_ID,
-                    childColumns = DatabaseHelper.TASK_PROJECT_ID,
-                    onUpdate = CASCADE,
-                    onDelete = SET_NULL),
-                @ForeignKey(
-                    entity = Place.class,
-                    parentColumns = DatabaseHelper.PLACE_ID,
-                    childColumns = DatabaseHelper.TASK_PLACE_ID,
-                    onDelete = SET_NULL,
-                    onUpdate = CASCADE)
-                },
-        indices = {@Index(DatabaseHelper.TASK_PROJECT_ID), @Index(DatabaseHelper.TASK_PLACE_ID)})
-public class Task {
+public class Task extends RealmObject implements NamedEntity {
 
     @PrimaryKey
-    @NonNull
-    @ColumnInfo(name = DatabaseHelper.TASK_ID)
     private String taskId;
 
     private String name;
 
     private boolean isCompleted;
 
-    @TypeConverters({DateConverter.class})
     private Date endTime;
 
-    @ColumnInfo(name = DatabaseHelper.TASK_PROJECT_ID)
-    private String projectId;
+    private Place place;
 
-    @ColumnInfo(name = DatabaseHelper.TASK_PLACE_ID)
-    private String placeId;
+    private Project project;
 
+    private RealmList<Group> groups;
 
+    private RealmList<Note> notes;
 
     public Task() {
         taskId = UUID.randomUUID().toString();
     }
 
-    @NonNull
-    public String getTaskId() {
-        return taskId;
+    public Task(String name) {
+        this();
+        this.name = name;
     }
 
-    public void setTaskId(@NonNull String taskId) {
-        this.taskId = taskId;
+    public String getTaskId() {
+        return taskId;
     }
 
     public String getName() {
@@ -93,19 +65,36 @@ public class Task {
         this.endTime = endTime;
     }
 
-    public String getProjectId() {
-        return projectId;
+    public Place getPlace() {
+        return place;
     }
 
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
+    public void setPlace(Place place) {
+        this.place = place;
     }
 
-    public String getPlaceId() {
-        return placeId;
+    public Project getProject() {
+        return project;
     }
 
-    public void setPlaceId(String placeId) {
-        this.placeId = placeId;
+    public void setProject(Project project) {
+        this.project = project;
     }
+
+    public RealmList<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(RealmList<Group> groups) {
+        this.groups = groups;
+    }
+
+    public RealmList<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(RealmList<Note> notes) {
+        this.notes = notes;
+    }
+
 }

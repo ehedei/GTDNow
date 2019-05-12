@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.dam.gtdnow.utility;
+package es.iespuertodelacruz.dam.gtdnow.utility.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,40 +8,34 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import java.util.List;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Note;
 
-public class NoteRecyclerViewAdapter extends RecyclerView.Adapter<NoteRecyclerViewAdapter.NoteViewHolder> {
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
     private List<Note> notes;
-    private int layout;
-    private OnItemClickListener itemClickListener;
-    private OnSwitchListener switchListener;
+    private NoteAdapter.OnSwitchListener switchListener;
+    private NoteAdapter.OnItemLongClickListener itemLongClickListener;
 
-    public NoteRecyclerViewAdapter(List<Note> notes, int layout, OnItemClickListener itemClickListener, OnSwitchListener switchListener) {
+    public NoteAdapter(List<Note> notes, OnSwitchListener switchListener, OnItemLongClickListener itemLongClickListener) {
         this.notes = notes;
-        this.layout = layout;
-        this.itemClickListener = itemClickListener;
         this.switchListener = switchListener;
+        this.itemLongClickListener = itemLongClickListener;
     }
 
     @NonNull
     @Override
-    public NoteViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(layout, viewGroup, false);
-        NoteViewHolder viewHolder = new NoteViewHolder(v);
+    public NoteAdapter.NoteViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_deadline, viewGroup, false);
+        NoteAdapter.NoteViewHolder viewHolder = new NoteAdapter.NoteViewHolder(v);
         return viewHolder;
     }
 
-
-
     @Override
-    public void onBindViewHolder(NoteViewHolder viewHolder, int i) {
-        viewHolder.bind(notes.get(i).getName(), notes.get(i).isCompleted(), itemClickListener, switchListener);
+    public void onBindViewHolder(@NonNull NoteAdapter.NoteViewHolder viewHolder, int i) {
+        viewHolder.bind(notes.get(i).getName(), notes.get(i).isCompleted(), switchListener, itemLongClickListener);
     }
-
 
     @Override
     public int getItemCount() {
@@ -58,7 +52,8 @@ public class NoteRecyclerViewAdapter extends RecyclerView.Adapter<NoteRecyclerVi
             isCompletedSwitch = itemView.findViewById(R.id.switch_item_deadline_ended);
         }
 
-        public void bind(final String name, final boolean isCompleted, final OnItemClickListener onItemClickListener, final OnSwitchListener onSwitchListener) {
+        public void bind(final String name, final boolean isCompleted, final NoteAdapter.OnSwitchListener onSwitchListener, final NoteAdapter.OnItemLongClickListener onItemLongClickListener) {
+
             this.nameTextView.setText(name);
             this.isCompletedSwitch.setChecked(isCompleted);
             this.isCompletedSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -68,25 +63,22 @@ public class NoteRecyclerViewAdapter extends RecyclerView.Adapter<NoteRecyclerVi
                 }
             });
 
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
 
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    return onItemClickListener.OnItemClick(name, getAdapterPosition());
+                    return onItemLongClickListener.OnItemLongClick(v, getAdapterPosition());
                 }
             });
-
-
-
         }
+
     }
 
-    public interface OnItemClickListener {
-        boolean OnItemClick(String name, int position);
+    public interface OnItemLongClickListener {
+        boolean OnItemLongClick(View v, int position);
     }
 
     public interface OnSwitchListener {
         void OnItemSwitch(boolean isEnded, int position);
     }
-
 }
