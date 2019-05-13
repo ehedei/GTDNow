@@ -52,7 +52,8 @@
     <string name="editnote_isended">Nota finalizada</string>
 
     <string name="editplace_title_create">Nueva Localización</string>
-    <string name="editplace_title_edit">Editar Localización</string>
+    <string name="editplace_message_create">Crear una nueva localización</string>
+    <string name="editplace_message_edit">Editar localización</string>
     <string name="editplace_name">Localización</string>
     <string name="editplace_name_hint">Introduzca localización</string>
 

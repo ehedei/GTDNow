@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), SelectorNoteActivity.class);
+                Intent i = new Intent(getApplicationContext(), DisplayerNoteActivity.class);
                 startActivity(i);
 
             }
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), SelectorPlaceActivity.class);
+                Intent i = new Intent(getApplicationContext(), DisplayerPlaceActivity.class);
                 startActivity(i);
 
             }
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         tasks.add(task6);
         tasks.add(task7);
 
-       new DBFiller().execute(tasks, null, null);
+       //new DBFiller().execute(tasks, null, null);
 
 
     }

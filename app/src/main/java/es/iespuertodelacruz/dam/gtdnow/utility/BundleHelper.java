@@ -6,4 +6,8 @@ public class BundleHelper {
     public final static String PROJECT_ID = "projectId";
     public final static String TASK_ID = "taskId";
     public final static String PLACE_ID = "placeId";
+
+
+    public final static int PLACE_ACTIVITY = 101;
+
 }

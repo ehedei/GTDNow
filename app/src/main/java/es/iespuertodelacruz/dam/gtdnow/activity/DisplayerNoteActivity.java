@@ -28,7 +28,7 @@ import io.realm.RealmResults;
 import io.realm.Sort;
 
 
-public class SelectorNoteActivity extends AppCompatActivity {
+public class DisplayerNoteActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;

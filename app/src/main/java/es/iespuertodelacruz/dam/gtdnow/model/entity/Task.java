@@ -6,10 +6,9 @@ import java.util.UUID;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 
-public class Task extends RealmObject implements NamedEntity {
+public class Task extends RealmObject implements NamedEntity, Cloneable {
 
     @PrimaryKey
     private String taskId;
@@ -19,6 +18,8 @@ public class Task extends RealmObject implements NamedEntity {
     private boolean isCompleted;
 
     private Date endTime;
+
+    private String reminder;
 
     private Place place;
 
@@ -35,6 +36,10 @@ public class Task extends RealmObject implements NamedEntity {
     public Task(String name) {
         this();
         this.name = name;
+    }
+
+    private void setTaskId(String taskId) {
+        this.taskId = taskId;
     }
 
     public String getTaskId() {
@@ -97,4 +102,26 @@ public class Task extends RealmObject implements NamedEntity {
         this.notes = notes;
     }
 
+    public String getReminder() {
+        return reminder;
+    }
+
+    public void setReminder(String reminder) {
+        this.reminder = reminder;
+    }
+
+    public Task clone(){
+        Task task = new Task();
+        task.setTaskId(this.taskId);
+        task.setName(this.name);
+        task.setCompleted(this.isCompleted);
+        task.setEndTime(this.endTime);
+        task.setNotes(this.notes);
+        task.setPlace(this.place);
+        task.setReminder(this.reminder);
+        task.setProject(this.project);
+        task.setGroups(this.groups);
+
+        return task;
+    }
 }

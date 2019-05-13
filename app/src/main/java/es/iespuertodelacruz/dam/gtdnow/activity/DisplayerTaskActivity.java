@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -56,7 +55,7 @@ public class DisplayerTaskActivity extends AppCompatActivity{
         adapter = new TaskAdapter(tasks, new TaskAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(String name, int position) {
-                Intent intent = new Intent(getApplicationContext(), SelectorNoteActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DisplayerNoteActivity.class);
                 intent.putExtra(BundleHelper.TASK_ID, tasks.get(position).getTaskId());
                 startActivity(intent);
             }

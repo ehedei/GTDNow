@@ -22,17 +22,11 @@
         </activity>
         <activity android:name=".activity.DisplayerTaskActivity"></activity>
         <activity android:name=".activity.SelectorProjectActivity" />
-        <activity android:name=".activity.SelectorPlaceActivity" />
-        <activity android:name=".activity.SelectorNoteActivity" />
+        <activity android:name=".activity.DisplayerPlaceActivity" />
+        <activity android:name=".activity.DisplayerNoteActivity" />
         <activity android:name=".activity.DisplayerGroupActivity" />
         <activity
             android:name=".activity.EditPlaceActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
-        <activity
-            android:name=".activity.EditNoteActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
-        <activity
-            android:name=".activity.EditGroupActivity"
             android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
         <activity
             android:name=".activity.EditProjectActivity"
