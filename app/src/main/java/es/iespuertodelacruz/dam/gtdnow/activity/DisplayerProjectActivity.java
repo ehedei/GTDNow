@@ -51,7 +51,9 @@ public class DisplayerProjectActivity extends AppCompatActivity {
         adapter = new GenericDeadlineAdapter<Project>(projects, new GenericDeadlineAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(String name, int position) {
-                Toast.makeText(getApplicationContext(), projects.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), DisplayerTaskFromProjectActivity.class);
+                intent.putExtra(BundleHelper.PROJECT_ID, projects.get(position).getProjectId());
+                startActivity(intent);
             }
         }, new GenericDeadlineAdapter.OnSwitchListener() {
             @Override

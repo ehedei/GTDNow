@@ -84,7 +84,4 @@ public class SelectorTaskFromGroupActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
 }

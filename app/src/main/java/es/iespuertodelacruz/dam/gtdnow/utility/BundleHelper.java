@@ -18,7 +18,7 @@ public class BundleHelper {
     public final static int TASK_ALL = 0;
     public final static int TASK_FROM_GROUP = 1;
     public final static int TASK_FROM_PROJECT = 2;
-    public final static int TASK_MODE_FROM_PLACE = 3;
+    public final static int TASK_FROM_PLACE = 3;
 
     public final static String EDIT_TASK_MODE = "selectorTaskMode";
 }

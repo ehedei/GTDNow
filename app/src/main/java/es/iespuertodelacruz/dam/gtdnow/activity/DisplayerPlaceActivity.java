@@ -52,7 +52,9 @@ public class DisplayerPlaceActivity extends AppCompatActivity {
         adapter = new GenericAdapter<Place>(places, new GenericAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(String name, int position) {
-                returnResult(places.get(position));
+                Intent intent = new Intent(getApplicationContext(), DisplayerTaskFromPlaceActivity.class);
+                intent.putExtra(BundleHelper.PLACE_ID, places.get(position).getPlaceId());
+                startActivity(intent);
             }
         }, new GenericAdapter.OnItemLongClickListener() {
             @Override
@@ -142,13 +144,6 @@ public class DisplayerPlaceActivity extends AppCompatActivity {
     }
 
 
-    // Return to activity with result
-    private void returnResult(@NotNull Place place) {
-        Intent intent = getIntent();
-        intent.putExtra(BundleHelper.PLACE_ID, place.getPlaceId());
-        setResult(RESULT_OK, intent);
-        finish();
-    }
 
     // CRUD
     private void createOrEditPlace(String name, Place place) {
