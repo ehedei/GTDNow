@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.GroupDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Group;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Place;
@@ -48,9 +49,9 @@ public class SelectorTaskFromGroupActivity extends AppCompatActivity {
         intent = getIntent();
 
         String groupId = intent.getStringExtra(BundleHelper.GROUP_ID);
-        group = realm.where(Group.class).equalTo("groupId", groupId).findFirst();
+        group = new GroupDao().getGroupById(groupId);
 
-        setTitle(R.string.all_tasks);
+        setTitle(group.getName() + " - " + getString(R.string.all_tasks));
 
         tasks = taskDao.getTasksNotInGroup(group.getGroupId());
 

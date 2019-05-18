@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import org.jetbrains.annotations.NotNull;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
-import es.iespuertodelacruz.dam.gtdnow.model.dao.PlaceDao;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.GroupDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.ProjectDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
-import es.iespuertodelacruz.dam.gtdnow.model.entity.Place;
+import es.iespuertodelacruz.dam.gtdnow.model.entity.Group;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Project;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
@@ -20,15 +23,14 @@ import es.iespuertodelacruz.dam.gtdnow.utility.adapter.FinalizableEntitySelector
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class SelectorTaskFromProjectActivity extends AppCompatActivity {
+public class SelectorProjectActivity extends AppCompatActivity {
     private FloatingActionButton fab;
-    private RealmResults<Task> tasks;
+    private RealmResults<Project> projects;
     private Realm realm;
     private ListView listView;
-    private Intent intent;
-    private TaskDao taskDao;
+    private ProjectDao projectDao;
     private FinalizableEntitySelectorAdapter adapter;
-    private Project project;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,38 +39,31 @@ public class SelectorTaskFromProjectActivity extends AppCompatActivity {
         listView = findViewById(R.id.listview_selector);
         fab = findViewById(R.id.fab);
 
+        setTitle(getString(R.string.all_projects));
+
         realm = Realm.getDefaultInstance();
-        taskDao = new TaskDao();
+        projectDao = new ProjectDao();
 
         prepareActivity();
     }
 
     private void prepareActivity() {
-        intent = getIntent();
+        projects = projectDao.getProjects();
 
-        project = new ProjectDao().getProjectById(getIntent().getStringExtra(BundleHelper.PROJECT_ID));
-
-        setTitle(project.getName() + " - " + getString(R.string.all_tasks));
-
-        tasks = taskDao.getTasksNotInProject(project.getProjectId());
-
-        adapter = new FinalizableEntitySelectorAdapter(tasks, getApplicationContext());
+        adapter = new FinalizableEntitySelectorAdapter(projects, getApplicationContext());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                taskDao.setProject(tasks.get(position), project);
-                finish();
+                backWithResult(projects.get(position).getProjectId());
             }
         });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), EditTaskActivity.class);
-                i.putExtra(BundleHelper.EDIT_TASK_MODE, BundleHelper.TASK_FROM_PROJECT);
-                i.putExtra(BundleHelper.PROJECT_ID, project.getProjectId());
-                startActivityForResult(i, BundleHelper.EDIT_TASK_ACTIVITY);
+                Intent i = new Intent(getApplicationContext(), EditProjectActivity.class);
+                startActivityForResult(i, BundleHelper.EDIT_PROJECT_ACTIVITY);
             }
         });
     }
@@ -76,10 +71,18 @@ public class SelectorTaskFromProjectActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == BundleHelper.EDIT_TASK_ACTIVITY) {
+        if (requestCode == BundleHelper.EDIT_PROJECT_ACTIVITY) {
             if (resultCode == RESULT_OK) {
-                adapter.notifyDataSetChanged();
+                String projectId = intent.getStringExtra(BundleHelper.PROJECT_ID);
+                backWithResult(projectId);
             }
         }
+    }
+
+    private void backWithResult(String projectId) {
+        Intent intent = getIntent();
+        intent.putExtra(BundleHelper.PROJECT_ID, projectId);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

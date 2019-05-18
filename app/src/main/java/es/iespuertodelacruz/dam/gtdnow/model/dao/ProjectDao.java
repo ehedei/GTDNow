@@ -35,6 +35,10 @@ public class ProjectDao {
         return realm.where(Project.class).sort("isCompleted", Sort.ASCENDING).findAll();
     }
 
+    public RealmResults<Project> getProjectsNotId(String projectId) {
+        return realm.where(Project.class).not().equalTo("projectId", projectId).sort("name", Sort.ASCENDING).findAll();
+    }
+
     public Project getProjectById(String projectId) {
         return realm.where(Project.class).equalTo("projectId", projectId).findFirst();
     }
@@ -48,6 +52,7 @@ public class ProjectDao {
     public void closeRealm() {
         realm.close();
     }
+
 
 }
 

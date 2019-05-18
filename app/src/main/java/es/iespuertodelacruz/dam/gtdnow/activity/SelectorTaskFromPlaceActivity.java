@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import es.iespuertodelacruz.dam.gtdnow.R;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.PlaceDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
@@ -45,7 +47,7 @@ public class SelectorTaskFromPlaceActivity extends AppCompatActivity {
 
         place = new PlaceDao().getPlaceById(getIntent().getStringExtra(BundleHelper.PLACE_ID));
 
-        setTitle(R.string.all_tasks);
+        setTitle(place.getName() + " - " + getString(R.string.all_tasks));
 
         tasks = taskDao.getTasksNotInPlace(place.getPlaceId());
 
@@ -56,6 +58,7 @@ public class SelectorTaskFromPlaceActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 taskDao.setPlace(tasks.get(position), place);
                 finish();
+
             }
         });
 

@@ -57,7 +57,7 @@ public class DisplayerTaskFromPlaceActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
-        adapter = new GenericDeadlineAdapter<Task>(tasks, new GenericDeadlineAdapter.OnItemClickListener() {
+        adapter = new GenericDeadlineAdapter<>(tasks, new GenericDeadlineAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(String name, int position) {
                 Intent intent = new Intent(getApplicationContext(), DisplayerNoteActivity.class);
@@ -84,6 +84,7 @@ public class DisplayerTaskFromPlaceActivity extends AppCompatActivity {
                                 return true;
                             case R.id.contextmenu_edit:
                                 Intent i = new Intent(getApplicationContext(), EditTaskActivity.class);
+                                i.putExtra(BundleHelper.EDIT_TASK_MODE, BundleHelper.TASK_FROM_PLACE);
                                 i.putExtra(BundleHelper.TASK_ID, tasks.get(position).getTaskId());
                                 startActivity(i);
                                 return true;

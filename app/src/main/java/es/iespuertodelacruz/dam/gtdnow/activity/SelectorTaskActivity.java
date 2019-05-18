@@ -28,7 +28,7 @@ public class SelectorTaskActivity extends AppCompatActivity {
     private ListView listView;
     private Intent intent;
     private TaskDao taskDao;
-    private FinalizableEntitySelectorAdapter adapter;
+    private FinalizableEntitySelectorAdapter<Task> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class SelectorTaskActivity extends AppCompatActivity {
         taskDao = new TaskDao();
 
         intent = getIntent();
-        mode = intent.getIntExtra(BundleHelper.SELECTOR_TASK_MODE, BundleHelper.TASK_ALL);
+        mode = intent.getIntExtra(BundleHelper.EDIT_TASK_MODE, BundleHelper.TASK_ALL);
 
         prepareActivity();
 
@@ -58,7 +58,7 @@ public class SelectorTaskActivity extends AppCompatActivity {
                 tasks = taskDao.getTasksByGroup(projectId);
                 break;
 
-            case BundleHelper.TASK_MODE_FROM_PLACE:
+            case BundleHelper.TASK_FROM_PLACE:
                 String placeId = intent.getStringExtra(BundleHelper.PLACE_ID);
                 tasks = taskDao.getTasksByGroup(placeId);
                 break;
@@ -67,7 +67,7 @@ public class SelectorTaskActivity extends AppCompatActivity {
                 tasks = taskDao.getTasks();
         }
 
-        adapter = new FinalizableEntitySelectorAdapter(tasks, getApplicationContext());
+        adapter = new FinalizableEntitySelectorAdapter<>(tasks, getApplicationContext());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -129,7 +129,7 @@ public class SelectorTaskActivity extends AppCompatActivity {
                 taskDao.setProject(task, null);
                 break;
 
-            case BundleHelper.TASK_MODE_FROM_PLACE:
+            case BundleHelper.TASK_FROM_PLACE:
                 taskDao.setPlace(task, null);
                 break;
 

@@ -9,16 +9,15 @@ public class BundleHelper {
 
 
     public final static int PLACE_ACTIVITY = 11;
+    public final static int PROJECT_ACTIVITY = 12;
     public final static int EDIT_TASK_ACTIVITY = 21;
-    public final static int SELECTOR_TASK_FROM_GROUP = 201;
-    public final static int SELECTOR_TASK_FROM_PROJECT = 202;
-    public final static int SELECTOR_TASK_FROM_PLACE = 203;
+    public static final int EDIT_PROJECT_ACTIVITY = 22;
 
-    public final static String SELECTOR_TASK_MODE = "selectorTaskMode";
     public final static int TASK_ALL = 0;
     public final static int TASK_FROM_GROUP = 1;
     public final static int TASK_FROM_PROJECT = 2;
     public final static int TASK_FROM_PLACE = 3;
 
     public final static String EDIT_TASK_MODE = "selectorTaskMode";
+
 }

@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.DisplayerTaskFromProjectActivity"></activity>
+        <activity android:name=".activity.SelectorProjectActivity"></activity>
+        <activity android:name=".activity.SelectorPlaceActivity" />
+        <activity android:name=".activity.DisplayerTaskFromProjectActivity" />
         <activity android:name=".activity.DisplayerTaskFromPlaceActivity" />
         <activity android:name=".activity.DisplayerTaskFromGroupActivity" />
         <activity android:name=".activity.SelectorTaskFromProjectActivity" />

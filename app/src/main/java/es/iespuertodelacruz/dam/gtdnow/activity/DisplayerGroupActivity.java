@@ -49,7 +49,10 @@ public class DisplayerGroupActivity extends AppCompatActivity {
 
         groupDao = new GroupDao();
 
-        groups = realm.where(Group.class).sort("name", Sort.ASCENDING).findAll();
+        groups = groupDao.getGroups();
+
+        setTitle(getString(R.string.all_groups));
+
 
         recyclerView = findViewById(R.id.recyclerview_selector);
         layoutManager = new LinearLayoutManager(this);
@@ -57,7 +60,7 @@ public class DisplayerGroupActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
-        adapter = new GenericAdapter<Group>(groups, new GenericAdapter.OnItemClickListener() {
+        adapter = new GenericAdapter<>(groups, new GenericAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(String name, int position) {
                 Intent intent = new Intent(getApplicationContext(), DisplayerTaskFromGroupActivity.class);

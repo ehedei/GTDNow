@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
+import org.jetbrains.annotations.NotNull;
+
 import es.iespuertodelacruz.dam.gtdnow.R;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.ProjectDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
@@ -54,7 +56,7 @@ public class DisplayerTaskFromProjectActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
-        adapter = new GenericDeadlineAdapter<Task>(tasks, new GenericDeadlineAdapter.OnItemClickListener() {
+        adapter = new GenericDeadlineAdapter<>(tasks, new GenericDeadlineAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(String name, int position) {
                 Intent intent = new Intent(getApplicationContext(), DisplayerNoteActivity.class);
@@ -81,6 +83,7 @@ public class DisplayerTaskFromProjectActivity extends AppCompatActivity {
                                 return true;
                             case R.id.contextmenu_edit:
                                 Intent i = new Intent(getApplicationContext(), EditTaskActivity.class);
+                                i.putExtra(BundleHelper.EDIT_TASK_MODE, BundleHelper.TASK_FROM_PROJECT);
                                 i.putExtra(BundleHelper.TASK_ID, tasks.get(position).getTaskId());
                                 startActivity(i);
                                 return true;
@@ -105,7 +108,7 @@ public class DisplayerTaskFromProjectActivity extends AppCompatActivity {
 
         tasks.addChangeListener(new RealmChangeListener<RealmResults<Task>>() {
             @Override
-            public void onChange(RealmResults<Task> realmResults) {
+            public void onChange(@NotNull RealmResults<Task> realmResults) {
                 if(!recyclerView.isComputingLayout()) {
                     adapter.notifyDataSetChanged();
                 }

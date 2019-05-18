@@ -34,6 +34,8 @@ public class DisplayerProjectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displayer);
 
+        setTitle(getString(R.string.all_projects));
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
 

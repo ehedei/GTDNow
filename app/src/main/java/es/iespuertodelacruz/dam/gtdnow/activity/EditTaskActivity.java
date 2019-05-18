@@ -1,18 +1,24 @@
 package es.iespuertodelacruz.dam.gtdnow.activity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Switch;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.GroupDao;
@@ -20,6 +26,7 @@ import es.iespuertodelacruz.dam.gtdnow.model.dao.PlaceDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.ProjectDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Place;
+import es.iespuertodelacruz.dam.gtdnow.model.entity.Project;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
 import io.realm.Realm;
@@ -41,6 +48,7 @@ public class EditTaskActivity extends AppCompatActivity {
     private Button buttonCancel;
     private Button buttonSave;
     private TaskDao taskDao;
+    private int mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,15 +89,61 @@ public class EditTaskActivity extends AppCompatActivity {
         editTextPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), DisplayerPlaceActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SelectorPlaceActivity.class);
                 startActivityForResult(intent, BundleHelper.PLACE_ACTIVITY);
             }
         });
+
+        editTextProject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SelectorProjectActivity.class);
+                startActivityForResult(intent, BundleHelper.PROJECT_ACTIVITY);
+            }
+        });
+
+        editTextEndTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+
+                if (task.getEndTime() != null)
+                    calendar.setTime(task.getEndTime());
+
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePicker = new DatePickerDialog(EditTaskActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(year, month, dayOfMonth);
+
+                        TimePickerDialog timePicker = new TimePickerDialog(EditTaskActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                calendar.set(Calendar.MINUTE, minute);
+                                task.setEndTime(calendar.getTime());
+                                fillTaskFields();
+                            }
+                        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+
+                        timePicker.show();
+                    }
+                }, year, month, day);
+                datePicker.show();
+            }
+        });
+
         prepareTask();
     }
 
     private void prepareTask() {
         Intent i = getIntent();
+
+        mode = i.getIntExtra(BundleHelper.EDIT_TASK_MODE, BundleHelper.TASK_ALL);
+
         String taskId = i.getStringExtra(BundleHelper.TASK_ID);
         String projectId = i.getStringExtra(BundleHelper.PROJECT_ID);
         String placeId = i.getStringExtra(BundleHelper.PLACE_ID);
@@ -117,7 +171,6 @@ public class EditTaskActivity extends AppCompatActivity {
         }
 
         fillTaskFields();
-
     }
 
     private void fillTaskFields() {
@@ -198,7 +251,23 @@ public class EditTaskActivity extends AppCompatActivity {
             imageButtonReminder.setVisibility(View.GONE);
             imageButtonReminder.setOnClickListener(null);
         }
+        setMode();
+    }
 
+    private void setMode() {
+        switch (mode) {
+            case BundleHelper.TASK_FROM_PROJECT:
+                editTextProject.setEnabled(false);
+                editTextProject.setClickable(false);
+                imageButtonProject.setVisibility(View.GONE);
+                break;
+
+            case BundleHelper.TASK_FROM_PLACE:
+                editTextPlace.setEnabled(false);
+                editTextPlace.setClickable(false);
+                imageButtonPlace.setVisibility(View.GONE);
+                break;
+        }
     }
 
     private void validateAndSaveTask() {
@@ -218,9 +287,17 @@ public class EditTaskActivity extends AppCompatActivity {
         if (requestCode == BundleHelper.PLACE_ACTIVITY) {
             if (resultCode == RESULT_OK) {
                 String placeId = intent.getStringExtra(BundleHelper.PLACE_ID);
-                Place place = realm.where(Place.class).equalTo("placeId", placeId).findFirst();
+                Place place = new PlaceDao().getPlaceById(placeId);
                 task.setPlace(place);
-                editTextPlace.setText(place.getName());
+                fillTaskFields();
+            }
+        }
+        else if (requestCode == BundleHelper.PROJECT_ACTIVITY) {
+            if (resultCode == RESULT_OK) {
+                String projectId = intent.getStringExtra(BundleHelper.PROJECT_ID);
+                Project project = new ProjectDao().getProjectById(projectId);
+                task.setProject(project);
+                fillTaskFields();
             }
         }
     }

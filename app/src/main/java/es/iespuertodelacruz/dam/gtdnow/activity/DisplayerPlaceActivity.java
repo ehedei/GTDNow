@@ -43,13 +43,15 @@ public class DisplayerPlaceActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         places = realm.where(Place.class).sort("name", Sort.ASCENDING).findAll();
 
+        setTitle(getString(R.string.all_places));
+
         recyclerView = findViewById(R.id.recyclerview_selector);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
-        adapter = new GenericAdapter<Place>(places, new GenericAdapter.OnItemClickListener() {
+        adapter = new GenericAdapter<>(places, new GenericAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(String name, int position) {
                 Intent intent = new Intent(getApplicationContext(), DisplayerTaskFromPlaceActivity.class);

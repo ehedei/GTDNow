@@ -102,7 +102,7 @@ public class TaskDao {
     }
 
     public RealmResults<Task> getTasksByPlace(String placeId) {
-        return realm.where(Task.class).equalTo("place.placeId", placeId).findAll();
+        return realm.where(Task.class).equalTo("place.placeId", placeId).sort("isCompleted", Sort.ASCENDING).findAll();
     }
 
     public RealmResults<Task> getTasksNotInPlace(String placeId) {
