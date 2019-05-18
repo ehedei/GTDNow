@@ -6,9 +6,8 @@ import java.util.UUID;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
-public class Project extends RealmObject implements NamedEntity{
+public class Project extends RealmObject implements Cloneable, FinalizableEntity{
     @PrimaryKey
     private String projectId;
 
@@ -62,5 +61,15 @@ public class Project extends RealmObject implements NamedEntity{
 
     public void setTasks(RealmList<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public Project clone() {
+        Project p = new Project();
+        p.projectId = this.getProjectId();
+        p.name = this.getName();
+        p.tasks = this.getTasks();
+        p.endTime = this.getEndTime();
+        p.isCompleted = this.isCompleted();
+        return p;
     }
 }

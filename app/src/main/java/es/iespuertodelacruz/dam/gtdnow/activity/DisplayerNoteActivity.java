@@ -23,7 +23,6 @@ import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
 import es.iespuertodelacruz.dam.gtdnow.utility.adapter.NoteAdapter;
 import io.realm.Realm;
-import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
@@ -39,7 +38,8 @@ public class DisplayerNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selectors);
+        setContentView(R.layout.activity_displayer);
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
 
@@ -48,6 +48,8 @@ public class DisplayerNoteActivity extends AppCompatActivity {
         String taskId = getIntent().getStringExtra(BundleHelper.TASK_ID);
 
         task = realm.where(Task.class).equalTo("taskId", taskId).findFirst();
+
+        setTitle(getString(R.string.all_notes) + " - " + task.getName());
 
         notes = getNotesByTask(taskId);
 

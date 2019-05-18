@@ -104,28 +104,6 @@
 
         </android.support.constraint.ConstraintLayout>
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="@dimen/fab_separation"
-            android:layout_marginTop="@dimen/fab_separation"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:id="@+id/textview_editproject_task"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/editproject_task_header" />
-
-        <Button
-            android:id="@+id/button_editproject_task"
-            style="@style/ButtonLikeSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/editproject_task"/>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

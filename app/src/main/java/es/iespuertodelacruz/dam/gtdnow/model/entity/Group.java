@@ -7,10 +7,10 @@ import io.realm.RealmObject;
 import io.realm.RealmResults;
 import io.realm.annotations.LinkingObjects;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 
-public class Group extends RealmObject implements NamedEntity {
+
+public class Group extends RealmObject implements NamedEntity, Cloneable {
     @PrimaryKey
     private String groupId;
 
@@ -29,6 +29,12 @@ public class Group extends RealmObject implements NamedEntity {
         this.setName(name);
     }
 
+    public Group(String name, RealmResults<Task> tasks) {
+        RealmResults<Task> tasks1;
+        tasks1 = tasks;
+        this.tasks = tasks1;
+        this.setName(name);
+    }
 
     public String getGroupId() {
         return groupId;
@@ -44,5 +50,11 @@ public class Group extends RealmObject implements NamedEntity {
 
     public RealmResults<Task> getTasks() {
         return tasks;
+    }
+
+    public Group clone() {
+        Group group = new Group(this.getName(), this.getTasks());
+        group.groupId = this.getGroupId();
+        return group;
     }
 }

@@ -26,17 +26,19 @@ import io.realm.RealmResults;
 import io.realm.Sort;
 
 public class DisplayerPlaceActivity extends AppCompatActivity {
+    private FloatingActionButton fab;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private RealmResults<Place> places;
     private Realm realm;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selectors);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        setContentView(R.layout.activity_displayer);
+        fab = findViewById(R.id.fab);
 
         realm = Realm.getDefaultInstance();
         places = realm.where(Place.class).sort("name", Sort.ASCENDING).findAll();

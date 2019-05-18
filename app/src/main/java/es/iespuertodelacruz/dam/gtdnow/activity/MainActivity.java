@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), EditProjectActivity.class);
+                Intent i = new Intent(getApplicationContext(), DisplayerProjectActivity.class);
                 startActivity(i);
 
             }

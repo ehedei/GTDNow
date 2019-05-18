@@ -10,55 +10,54 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
-import org.jetbrains.annotations.NotNull;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
-import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.ProjectDao;
+import es.iespuertodelacruz.dam.gtdnow.model.entity.Project;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
 import es.iespuertodelacruz.dam.gtdnow.utility.adapter.GenericDeadlineAdapter;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
-import io.realm.Sort;
 
-public class DisplayerTaskActivity extends AppCompatActivity{
+public class DisplayerProjectActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private RealmResults<Task> tasks;
+    private RealmResults<Project> projects;
     private Realm realm;
-
-
+    private ProjectDao projectDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displayer);
 
+
         FloatingActionButton fab = findViewById(R.id.fab);
 
         realm = Realm.getDefaultInstance();
-        tasks = getTasks();
+
+        projectDao = new ProjectDao();
+
+        projects = projectDao.getProjects();
 
         recyclerView = findViewById(R.id.recyclerview_selector);
         layoutManager = new LinearLayoutManager(this);
         ((LinearLayoutManager) layoutManager).setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
-        adapter = new GenericDeadlineAdapter<Task>(tasks, new GenericDeadlineAdapter.OnItemClickListener() {
+        adapter = new GenericDeadlineAdapter<Project>(projects, new GenericDeadlineAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(String name, int position) {
-                Intent intent = new Intent(getApplicationContext(), DisplayerNoteActivity.class);
-                intent.putExtra(BundleHelper.TASK_ID, tasks.get(position).getTaskId());
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(), projects.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         }, new GenericDeadlineAdapter.OnSwitchListener() {
             @Override
             public void OnItemSwitch(boolean isEnded, int position) {
-                Task task = tasks.get(position);
-                setCompletedInRealm(task, isEnded);
+                projectDao.setCompleted(projects.get(position), isEnded);
+
             }
         }, new GenericDeadlineAdapter.OnItemLongClickListener() {
             @Override
@@ -71,11 +70,11 @@ public class DisplayerTaskActivity extends AppCompatActivity{
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.contextmenu_delete:
-                                deleteTask(tasks.get(position));
+                                projectDao.deleteProject(projects.get(position));
                                 return true;
                             case R.id.contextmenu_edit:
-                                Intent i = new Intent(getApplicationContext(), EditTaskActivity.class);
-                                i.putExtra(BundleHelper.TASK_ID, tasks.get(position).getTaskId());
+                                Intent i = new Intent(getApplicationContext(), EditProjectActivity.class);
+                                i.putExtra(BundleHelper.PROJECT_ID, projects.get(position).getProjectId());
                                 startActivity(i);
                                 return true;
                             default:
@@ -91,66 +90,24 @@ public class DisplayerTaskActivity extends AppCompatActivity{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), EditTaskActivity.class);
+                Intent i = new Intent(getApplicationContext(), EditProjectActivity.class);
                 startActivity(i);
             }
         });
 
-        tasks.addChangeListener(new RealmChangeListener<RealmResults<Task>>() {
+        projects.addChangeListener(new RealmChangeListener<RealmResults<Project>>() {
             @Override
-            public void onChange(RealmResults<Task> realmResults) {
+            public void onChange(RealmResults<Project> projects) {
                 if(!recyclerView.isComputingLayout()) {
                     adapter.notifyDataSetChanged();
                 }
             }
         });
-
-
     }
-
 
     protected void onDestroy() {
         realm.close();
         super.onDestroy();
-    }
-
-
-    // CRUD
-    private RealmResults<Task> getTasks() {
-        RealmResults<Task> tasks = null;
-        Intent i = getIntent();
-
-        if (i.getStringExtra(BundleHelper.GROUP_ID) != null) {
-            tasks = realm.where(Task.class).equalTo("groups.groupId", i.getStringExtra(BundleHelper.GROUP_ID)).sort("isCompleted", Sort.ASCENDING).findAll();
-
-        }
-        else if (i.getStringExtra(BundleHelper.PROJECT_ID) != null) {
-            tasks = realm.where(Task.class).equalTo("project.projectId", i.getStringExtra(BundleHelper.PROJECT_ID)).sort("isCompleted", Sort.ASCENDING).findAll();
-
-        }
-        else if (i.getStringExtra(BundleHelper.PLACE_ID) != null) {
-            tasks = realm.where(Task.class).equalTo("place.placeId", i.getStringExtra(BundleHelper.PLACE_ID)).sort("isCompleted", Sort.ASCENDING).findAll();
-
-        }
-        else {
-            tasks = realm.where(Task.class).sort("isCompleted", Sort.ASCENDING).findAll();
-        }
-
-        return tasks;
-    }
-
-
-    private void deleteTask(@NotNull Task task) {
-        realm.beginTransaction();
-        task.deleteFromRealm();
-        realm.commitTransaction();
-    }
-
-    private void setCompletedInRealm(@NotNull Task task, boolean isEnded) {
-        realm.beginTransaction();
-        task.setCompleted(isEnded);
-        realm.copyToRealmOrUpdate(task);
-        realm.commitTransaction();
     }
 
 }

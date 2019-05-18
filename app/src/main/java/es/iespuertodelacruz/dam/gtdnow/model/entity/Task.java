@@ -8,7 +8,7 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
 
-public class Task extends RealmObject implements NamedEntity, Cloneable {
+public class Task extends RealmObject implements FinalizableEntity, Cloneable {
 
     @PrimaryKey
     private String taskId;
@@ -31,6 +31,8 @@ public class Task extends RealmObject implements NamedEntity, Cloneable {
 
     public Task() {
         taskId = UUID.randomUUID().toString();
+        groups = new RealmList<>();
+        notes = new RealmList<>();
     }
 
     public Task(String name) {

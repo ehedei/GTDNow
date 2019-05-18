@@ -8,92 +8,126 @@ import es.iespuertodelacruz.dam.gtdnow.model.entity.Place;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Project;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import io.realm.Realm;
+import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class TaskDao {
     private Realm realm;
-    private Task task;
 
-    public TaskDao(Task task) {
+    public TaskDao() {
         this.realm = Realm.getDefaultInstance();
-        this.task = task;
     }
 
-    public void createOrUpdateTask() {
+    public void createOrUpdateTask(Task task) {
         realm.beginTransaction();
         realm.insertOrUpdate(task);
         realm.commitTransaction();
     }
 
-    public void setName(String name) {
+    public void setName(Task task, String name) {
         realm.beginTransaction();
         task.setName(name);
         realm.commitTransaction();
     }
 
-    public void setCompleted(boolean completed) {
+    public void setCompleted(Task task, boolean completed) {
         realm.beginTransaction();
         task.setCompleted(completed);
         realm.commitTransaction();
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Task task, Date endTime) {
         realm.beginTransaction();
         task.setEndTime(endTime);
         realm.commitTransaction();
     }
 
-    public void setPlace(Place place) {
+    public void setPlace(Task task, Place place) {
         realm.beginTransaction();
         task.setPlace(place);
         realm.commitTransaction();
     }
 
-    public void setProject(Project project) {
+    public void setProject(Task task, Project project) {
         realm.beginTransaction();
         task.setProject(project);
         realm.commitTransaction();
     }
 
-    public void addGroup(Group group) {
+    public void addGroup(Task task, Group group) {
         realm.beginTransaction();
         task.getGroups().add(group);
         realm.commitTransaction();
     }
 
-    public void removeGroup(Group group) {
+    public void removeGroup(Task task, Group group) {
         realm.beginTransaction();
         task.getGroups().remove(group);
         realm.commitTransaction();
     }
 
-    public void addNote(Note note) {
+    public void addNote(Task task, Note note) {
         realm.beginTransaction();
         task.getNotes().add(note);
         realm.commitTransaction();
     }
 
 
-    public void deleteNote(Note note) {
+    public void deleteNote(Task task, Note note) {
         realm.beginTransaction();
         task.getNotes().first(note).deleteFromRealm();
         realm.commitTransaction();
     }
 
-    public void addReminder(String reminder) {
+    public void addReminder(Task task, String reminder) {
         realm.beginTransaction();
         task.setReminder(reminder);
         realm.commitTransaction();
     }
 
-    public void deleteReminder() {
+    public void deleteReminder(Task task, String reminder) {
         realm.beginTransaction();
         task.setReminder(null);
         //task.getReminder().deleteFromRealm();
         realm.commitTransaction();
+
+    }
+
+    public Task getTaskById(String taskId) {
+        return realm.where(Task.class).equalTo("taskId", taskId).findFirst();
+    }
+
+    public RealmResults<Task> getTasks() {
+        return realm.where(Task.class).findAll();
+    }
+
+    public RealmResults<Task> getTasksByPlace(String placeId) {
+        return realm.where(Task.class).equalTo("place.placeId", placeId).findAll();
+    }
+
+    public RealmResults<Task> getTasksNotInPlace(String placeId) {
+        return realm.where(Task.class).not().equalTo("place.placeId", placeId).findAll();
+    }
+
+    public RealmResults<Task> getTasksNotInGroup(String groupId) {
+        return realm.where(Task.class).not().equalTo("groups.groupId", groupId).sort("name", Sort.ASCENDING).findAll();
+    }
+
+    public RealmResults<Task> getTasksByGroup(String groupId) {
+        return realm.where(Task.class).equalTo("groups.groupId", groupId).sort("isCompleted", Sort.ASCENDING).findAll();
+    }
+
+    public RealmResults<Task> getTasksByProject(String projectId) {
+        return realm.where(Task.class).equalTo("project.projectId", projectId).findAll();
+    }
+
+    public RealmResults<Task> getTasksNotInProject(String projectId) {
+        return realm.where(Task.class).isNull("project").findAll();
     }
 
     public void closeRealm() {
         realm.close();
     }
+
 
 }

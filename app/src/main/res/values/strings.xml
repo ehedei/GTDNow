@@ -2,6 +2,13 @@
     <string name="app_name">GTD Now!</string>
     <string name="all_accept">Aceptar</string>
     <string name="all_cancel">Cancelar</string>
+    <string name="all_groups">Listas de Tareas</string>
+    <string name="all_notes">Notas</string>
+    <string name="all_projects">Projectos</string>
+    <string name="all_tasks">Tareas</string>
+    <string name="all_places">Localizaciones</string>
+    <string name="all_remiders">Recordatorios</string>
+
     <string name="title_activity_edit_task">EditTaskActivity</string>
 
     <string name="edittask_title_create">Nueva Tarea</string>

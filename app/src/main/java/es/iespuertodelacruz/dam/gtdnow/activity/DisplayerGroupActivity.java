@@ -19,6 +19,7 @@ import android.widget.Toast;
 import org.jetbrains.annotations.NotNull;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.GroupDao;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Group;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
 import es.iespuertodelacruz.dam.gtdnow.utility.adapter.GenericAdapter;
@@ -33,14 +34,21 @@ public class DisplayerGroupActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private RealmResults<Group> groups;
     private Realm realm;
+    private GroupDao groupDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selectors);
+        setContentView(R.layout.activity_displayer);
+
+        setTitle(R.string.all_groups);
+
         FloatingActionButton fab = findViewById(R.id.fab);
 
         realm = Realm.getDefaultInstance();
+
+        groupDao = new GroupDao();
+
         groups = realm.where(Group.class).sort("name", Sort.ASCENDING).findAll();
 
         recyclerView = findViewById(R.id.recyclerview_selector);
@@ -52,7 +60,7 @@ public class DisplayerGroupActivity extends AppCompatActivity {
         adapter = new GenericAdapter<Group>(groups, new GenericAdapter.OnItemClickListener() {
             @Override
             public void OnItemClick(String name, int position) {
-                Intent intent = new Intent(getApplicationContext(), DisplayerTaskActivity.class);
+                Intent intent = new Intent(getApplicationContext(), DisplayerTaskFromGroupActivity.class);
                 intent.putExtra(BundleHelper.GROUP_ID, groups.get(position).getGroupId());
                 startActivity(intent);
             }
@@ -67,7 +75,7 @@ public class DisplayerGroupActivity extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.contextmenu_delete:
-                                deleteGroup(groups.get(position));
+                                groupDao.deleteGroup(groups.get(position));
                                 return true;
                             case R.id.contextmenu_edit:
                                 showAlertForEditingGroup(groups.get(position));
@@ -146,18 +154,14 @@ public class DisplayerGroupActivity extends AppCompatActivity {
 
     // CRUD
     private void createOrEditGroup(String name, Group group) {
-        realm.beginTransaction();
+        Group g;
         if (group == null) {
-            group = new Group();
+            g = new Group();
         }
-        group.setName(name);
-        realm.copyToRealmOrUpdate(group);
-        realm.commitTransaction();
+        else
+            g = group.clone();
+        g.setName(name);
+        groupDao.createOrUpdateGroup(g);
     }
 
-    private void deleteGroup(@NotNull Group group) {
-        realm.beginTransaction();
-        group.deleteFromRealm();
-        realm.commitTransaction();
-    }
 }

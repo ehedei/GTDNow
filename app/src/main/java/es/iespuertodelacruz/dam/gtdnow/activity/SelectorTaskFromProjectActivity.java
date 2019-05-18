@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
 
-public class SelectorProjectActivity extends AppCompatActivity {
+public class SelectorTaskFromProjectActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selectors);
+        setContentView(R.layout.activity_selector);
     }
 }

@@ -10,6 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity.DisplayerTaskFromProjectActivity"></activity>
+        <activity android:name=".activity.DisplayerTaskFromPlaceActivity" />
+        <activity android:name=".activity.DisplayerTaskFromGroupActivity" />
+        <activity android:name=".activity.SelectorTaskFromProjectActivity" />
+        <activity android:name=".activity.SelectorTaskFromGroupActivity" />
+        <activity android:name=".activity.SelectorTaskFromPlaceActivity" />
+        <activity android:name=".activity.SelectorTaskActivity" />
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
@@ -20,21 +27,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.DisplayerTaskActivity"></activity>
-        <activity android:name=".activity.SelectorProjectActivity" />
+        <activity android:name=".activity.DisplayerTaskActivity" />
+        <activity android:name=".activity.DisplayerProjectActivity" />
         <activity android:name=".activity.DisplayerPlaceActivity" />
         <activity android:name=".activity.DisplayerNoteActivity" />
         <activity android:name=".activity.DisplayerGroupActivity" />
-        <activity
-            android:name=".activity.EditPlaceActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
         <activity
             android:name=".activity.EditProjectActivity"
             android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
         <activity
             android:name=".activity.EditTaskActivity"
             android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
-
     </application>
 
 </manifest>

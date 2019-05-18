@@ -15,6 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.GroupDao;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.PlaceDao;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.ProjectDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Place;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
@@ -37,11 +40,13 @@ public class EditTaskActivity extends AppCompatActivity {
     private SimpleDateFormat dateFormat;
     private Button buttonCancel;
     private Button buttonSave;
+    private TaskDao taskDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
+
         dateFormat = new SimpleDateFormat("dd.MM.yyyy '@' HH:mm:ss");
         editTextName = findViewById(R.id.edittext_edittask_name);
         switchIsEnded = findViewById(R.id.switch_edittask_isended);
@@ -57,21 +62,7 @@ public class EditTaskActivity extends AppCompatActivity {
         buttonSave = findViewById(R.id.button_edittask_save);
 
         realm = Realm.getDefaultInstance();
-
-        Intent i = getIntent();
-
-        String taskId = i.getStringExtra(BundleHelper.TASK_ID);
-
-        if (taskId == null) {
-            task = new Task();
-            setTitle(R.string.edittask_title_create);
-        }
-        else {
-            task = realm.where(Task.class).equalTo("taskId", taskId).findFirst().clone();
-            setTitle(R.string.edittask_title_edit);
-        }
-
-        fillTaskFields();
+        taskDao = new TaskDao();
 
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +85,38 @@ public class EditTaskActivity extends AppCompatActivity {
                 startActivityForResult(intent, BundleHelper.PLACE_ACTIVITY);
             }
         });
+        prepareTask();
+    }
+
+    private void prepareTask() {
+        Intent i = getIntent();
+        String taskId = i.getStringExtra(BundleHelper.TASK_ID);
+        String projectId = i.getStringExtra(BundleHelper.PROJECT_ID);
+        String placeId = i.getStringExtra(BundleHelper.PLACE_ID);
+        String groupId = i.getStringExtra(BundleHelper.GROUP_ID);
+
+        if (taskId == null) {
+            task = new Task();
+            setTitle(R.string.edittask_title_create);
+        }
+        else {
+            task = taskDao.getTaskById(taskId).clone();
+            setTitle(R.string.edittask_title_edit);
+        }
+
+        if (groupId != null) {
+            task.getGroups().add(new GroupDao().getGroupById(groupId));
+        }
+
+        if (projectId != null) {
+            task.setProject(new ProjectDao().getProjectById(projectId));
+        }
+
+        if (placeId != null) {
+            task.setPlace(new PlaceDao().getPlaceById(projectId));
+        }
+
+        fillTaskFields();
 
     }
 
@@ -184,7 +207,8 @@ public class EditTaskActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), getResources().getText(R.string.message_name_required), Toast.LENGTH_SHORT).show();
         else {
             task.setName(name);
-            new TaskDao(task).createOrUpdateTask();
+            taskDao.createOrUpdateTask(task);
+            setResult(RESULT_OK, getIntent());
             finish();
         }
     }
