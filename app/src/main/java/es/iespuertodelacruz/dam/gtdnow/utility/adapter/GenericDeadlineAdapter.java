@@ -77,17 +77,16 @@ public class GenericDeadlineAdapter<T extends FinalizableEntity> extends Recycle
                 else {
                     this.dateTextViewValue.setTextColor(itemView.getContext().getResources().getColor(R.color.primary_text));
                 }
-
             }
             else {
                 this.dateTextViewValue.setVisibility(View.GONE);
                 this.dateTextView.setVisibility(View.GONE);
             }
 
-
             this.nameTextView.setText(name);
             this.isCompletedSwitch.setChecked(isCompleted);
             this.isCompletedSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     onSwitchListener.OnItemSwitch(isChecked, getAdapterPosition());
@@ -101,7 +100,6 @@ public class GenericDeadlineAdapter<T extends FinalizableEntity> extends Recycle
                     onItemClickListener.OnItemClick(name, getAdapterPosition());
                 }
             });
-
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override

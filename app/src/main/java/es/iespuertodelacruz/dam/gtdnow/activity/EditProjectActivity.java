@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.GroupDao;
@@ -156,10 +157,8 @@ public class EditProjectActivity extends AppCompatActivity {
     }
 
     private void fillTaskFields() {
-        if (project.getName() != null)
+        if (project.getName() != null && projectName.getText().length() == 0)
             projectName.setText(project.getName());
-        else
-            projectName.setText("");
 
         isEnded.setChecked(project.isCompleted());
 
@@ -181,4 +180,36 @@ public class EditProjectActivity extends AppCompatActivity {
             deadlineButton.setOnClickListener(null);
         }
     }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        projectName.setText(savedInstanceState.getString(BundleHelper.NAME));
+        project.setCompleted(savedInstanceState.getBoolean(BundleHelper.IS_ENDED));
+
+        if (savedInstanceState.getLong(BundleHelper.DEADLINE) != Long.MIN_VALUE)
+            project.setEndTime(new Date(savedInstanceState.getLong(BundleHelper.DEADLINE)));
+
+        //task.setReminder();
+
+        fillTaskFields();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString(BundleHelper.NAME, projectName.getText().toString());
+        outState.putBoolean(BundleHelper.IS_ENDED, project.isCompleted());
+
+
+        if (project.getEndTime() != null)
+            outState.putLong(BundleHelper.DEADLINE, project.getEndTime().getTime());
+        else
+            outState.putLong(BundleHelper.DEADLINE, Long.MIN_VALUE);
+
+//        if (task.getReminder() != null) {
+//
+//        }
+
+        super.onSaveInstanceState(outState);
+    }
+
 }

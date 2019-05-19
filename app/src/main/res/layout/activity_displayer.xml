@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding_editactivities">
+    android:paddingEnd="@dimen/padding_editactivities"
+    android:paddingStart="@dimen/padding_editactivities"
+    >
 
     <Spinner
         android:id="@+id/spinner_selector_category"
@@ -36,13 +38,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/fab_separation"
-        android:layout_marginBottom="@dimen/fab_separation"
+        android:paddingBottom="@dimen/padding_bottom_listview"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_selector_groupby" />
-
-
 
 
     <android.support.design.widget.FloatingActionButton
@@ -52,8 +53,10 @@
         android:layout_gravity="bottom|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintVertical_bias="0.96"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
 </android.support.constraint.ConstraintLayout>

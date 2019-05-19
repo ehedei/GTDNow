@@ -42,9 +42,9 @@ public class NamedEntitySelectorAdapter<T extends NamedEntity> extends BaseAdapt
         NamedEntitySelectorAdapter.ViewHolder vh;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_finalizable_selector, null);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_limitless, null);
             vh = new NamedEntitySelectorAdapter.ViewHolder();
-            vh.textViewName = convertView.findViewById(R.id.textview_item_finalizable_namevalue);
+            vh.textViewName = convertView.findViewById(R.id.textview_item_limitless_namevalue);
             convertView.setTag(vh);
         } else {
             vh = (NamedEntitySelectorAdapter.ViewHolder) convertView.getTag();

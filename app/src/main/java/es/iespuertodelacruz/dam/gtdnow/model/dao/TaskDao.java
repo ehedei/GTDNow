@@ -98,31 +98,45 @@ public class TaskDao {
     }
 
     public RealmResults<Task> getTasks() {
-        return realm.where(Task.class).findAll();
+        String[] fieldNames = {"isCompleted", "name"};
+        Sort[] sort = {Sort.ASCENDING, Sort.ASCENDING};
+        return realm.where(Task.class).sort(fieldNames, sort).findAll();
     }
 
     public RealmResults<Task> getTasksByPlace(String placeId) {
-        return realm.where(Task.class).equalTo("place.placeId", placeId).sort("isCompleted", Sort.ASCENDING).findAll();
+        String[] fieldNames = {"isCompleted", "name"};
+        Sort[] sort = {Sort.ASCENDING, Sort.ASCENDING};
+        return realm.where(Task.class).equalTo("place.placeId", placeId).sort(fieldNames, sort).findAll();
     }
 
     public RealmResults<Task> getTasksNotInPlace(String placeId) {
-        return realm.where(Task.class).not().equalTo("place.placeId", placeId).findAll();
+        String[] fieldNames = {"isCompleted", "name"};
+        Sort[] sort = {Sort.ASCENDING, Sort.ASCENDING};
+        return realm.where(Task.class).not().equalTo("place.placeId", placeId).sort(fieldNames, sort).findAll();
     }
 
     public RealmResults<Task> getTasksNotInGroup(String groupId) {
-        return realm.where(Task.class).not().equalTo("groups.groupId", groupId).sort("name", Sort.ASCENDING).findAll();
+        String[] fieldNames = {"isCompleted", "name"};
+        Sort[] sort = {Sort.ASCENDING, Sort.ASCENDING};
+        return realm.where(Task.class).not().equalTo("groups.groupId", groupId).sort(fieldNames, sort).findAll();
     }
 
     public RealmResults<Task> getTasksByGroup(String groupId) {
-        return realm.where(Task.class).equalTo("groups.groupId", groupId).sort("isCompleted", Sort.ASCENDING).findAll();
+        String[] fieldNames = {"isCompleted", "name"};
+        Sort[] sort = {Sort.ASCENDING, Sort.ASCENDING};
+        return realm.where(Task.class).equalTo("groups.groupId", groupId).sort(fieldNames, sort).findAll();
     }
 
     public RealmResults<Task> getTasksByProject(String projectId) {
-        return realm.where(Task.class).equalTo("project.projectId", projectId).findAll();
+        String[] fieldNames = {"isCompleted", "name"};
+        Sort[] sort = {Sort.ASCENDING, Sort.ASCENDING};
+        return realm.where(Task.class).equalTo("project.projectId", projectId).sort(fieldNames, sort).findAll();
     }
 
     public RealmResults<Task> getTasksNotInProject(String projectId) {
-        return realm.where(Task.class).isNull("project").findAll();
+        String[] fieldNames = {"isCompleted", "name"};
+        Sort[] sort = {Sort.ASCENDING, Sort.ASCENDING};
+        return realm.where(Task.class).isNull("project").sort(fieldNames, sort).findAll();
     }
 
     public void closeRealm() {

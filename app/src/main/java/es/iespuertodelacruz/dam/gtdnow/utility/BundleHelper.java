@@ -7,6 +7,9 @@ public class BundleHelper {
     public final static String TASK_ID = "taskId";
     public final static String PLACE_ID = "placeId";
 
+    public final static String DEADLINE = "deadline";
+    public final static String NAME = "name";
+    public final static String IS_ENDED = "isEnded";
 
     public final static int PLACE_ACTIVITY = 11;
     public final static int PROJECT_ACTIVITY = 12;

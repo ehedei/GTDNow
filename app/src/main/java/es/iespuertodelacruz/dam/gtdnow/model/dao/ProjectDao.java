@@ -1,7 +1,6 @@
 package es.iespuertodelacruz.dam.gtdnow.model.dao;
 
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Project;
-import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
@@ -32,11 +31,15 @@ public class ProjectDao {
     }
 
     public RealmResults<Project> getProjects() {
-        return realm.where(Project.class).sort("isCompleted", Sort.ASCENDING).findAll();
+        String[] fieldNames = {"isCompleted", "name"};
+        Sort[] sort = {Sort.ASCENDING, Sort.ASCENDING};
+        return realm.where(Project.class).sort(fieldNames, sort).findAll();
     }
 
     public RealmResults<Project> getProjectsNotId(String projectId) {
-        return realm.where(Project.class).not().equalTo("projectId", projectId).sort("name", Sort.ASCENDING).findAll();
+        String[] fieldNames = {"isCompleted", "name"};
+        Sort[] sort = {Sort.ASCENDING, Sort.ASCENDING};
+        return realm.where(Project.class).not().equalTo("projectId", projectId).sort(fieldNames, sort).findAll();
     }
 
     public Project getProjectById(String projectId) {
@@ -53,6 +56,4 @@ public class ProjectDao {
         realm.close();
     }
 
-
 }
-

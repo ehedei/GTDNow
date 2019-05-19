@@ -14,6 +14,7 @@ import android.widget.PopupMenu;
 import org.jetbrains.annotations.NotNull;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
 import es.iespuertodelacruz.dam.gtdnow.utility.adapter.GenericDeadlineAdapter;
@@ -28,7 +29,7 @@ public class DisplayerTaskActivity extends AppCompatActivity{
     private RecyclerView.LayoutManager layoutManager;
     private RealmResults<Task> tasks;
     private Realm realm;
-
+    private TaskDao taskDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,10 @@ public class DisplayerTaskActivity extends AppCompatActivity{
         FloatingActionButton fab = findViewById(R.id.fab);
 
         realm = Realm.getDefaultInstance();
-        tasks = getTasks();
+
+        taskDao = new TaskDao();
+
+        tasks = taskDao.getTasks();
 
         recyclerView = findViewById(R.id.recyclerview_selector);
         layoutManager = new LinearLayoutManager(this);
@@ -115,30 +119,30 @@ public class DisplayerTaskActivity extends AppCompatActivity{
     }
 
 
-    // CRUD
-    private RealmResults<Task> getTasks() {
-        RealmResults<Task> tasks = null;
-        Intent i = getIntent();
-
-        if (i.getStringExtra(BundleHelper.GROUP_ID) != null) {
-            tasks = realm.where(Task.class).equalTo("groups.groupId", i.getStringExtra(BundleHelper.GROUP_ID)).sort("isCompleted", Sort.ASCENDING).findAll();
-
-        }
-        else if (i.getStringExtra(BundleHelper.PROJECT_ID) != null) {
-            tasks = realm.where(Task.class).equalTo("project.projectId", i.getStringExtra(BundleHelper.PROJECT_ID)).sort("isCompleted", Sort.ASCENDING).findAll();
-
-        }
-        else if (i.getStringExtra(BundleHelper.PLACE_ID) != null) {
-            tasks = realm.where(Task.class).equalTo("place.placeId", i.getStringExtra(BundleHelper.PLACE_ID)).sort("isCompleted", Sort.ASCENDING).findAll();
-
-        }
-        else {
-            tasks = realm.where(Task.class).sort("isCompleted", Sort.ASCENDING).findAll();
-        }
-
-        return tasks;
-    }
-
+//    // CRUD
+//    private RealmResults<Task> getTasks() {
+//        RealmResults<Task> tasks = null;
+//        Intent i = getIntent();
+//
+//        if (i.getStringExtra(BundleHelper.GROUP_ID) != null) {
+//            tasks = realm.where(Task.class).equalTo("groups.groupId", i.getStringExtra(BundleHelper.GROUP_ID)).sort("isCompleted", Sort.ASCENDING).findAll();
+//
+//        }
+//        else if (i.getStringExtra(BundleHelper.PROJECT_ID) != null) {
+//            tasks = realm.where(Task.class).equalTo("project.projectId", i.getStringExtra(BundleHelper.PROJECT_ID)).sort("isCompleted", Sort.ASCENDING).findAll();
+//
+//        }
+//        else if (i.getStringExtra(BundleHelper.PLACE_ID) != null) {
+//            tasks = realm.where(Task.class).equalTo("place.placeId", i.getStringExtra(BundleHelper.PLACE_ID)).sort("isCompleted", Sort.ASCENDING).findAll();
+//
+//        }
+//        else {
+//            tasks = realm.where(Task.class).sort("isCompleted", Sort.ASCENDING).findAll();
+//        }
+//
+//        return tasks;
+//    }
+//
 
     private void deleteTask(@NotNull Task task) {
         realm.beginTransaction();

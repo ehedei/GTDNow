@@ -174,10 +174,8 @@ public class EditTaskActivity extends AppCompatActivity {
     }
 
     private void fillTaskFields() {
-        if (task.getName() != null)
+        if (task.getName() != null && editTextName.getText().length() == 0)
             editTextName.setText(task.getName());
-        else
-            editTextName.setText("");
 
         switchIsEnded.setChecked(task.isCompleted());
 
@@ -301,6 +299,50 @@ public class EditTaskActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        editTextName.setText(savedInstanceState.getString(BundleHelper.NAME));
+        task.setCompleted(savedInstanceState.getBoolean(BundleHelper.IS_ENDED));
+
+        if (savedInstanceState.getLong(BundleHelper.DEADLINE) != Long.MIN_VALUE)
+            task.setEndTime(new Date(savedInstanceState.getLong(BundleHelper.DEADLINE)));
+
+        task.setProject(new ProjectDao().getProjectById(savedInstanceState.getString(BundleHelper.PROJECT_ID)));
+        task.setPlace(new PlaceDao().getPlaceById(savedInstanceState.getString(BundleHelper.PLACE_ID)));
+
+        //task.setReminder();
+
+        fillTaskFields();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString(BundleHelper.NAME, editTextName.getText().toString());
+        outState.putBoolean(BundleHelper.IS_ENDED, task.isCompleted());
+
+        if (task.getPlace() != null) {
+            outState.putString(BundleHelper.PLACE_ID, task.getPlace().getPlaceId());
+        }
+
+        if (task.getProject() != null) {
+            outState.putString(BundleHelper.PROJECT_ID, task.getProject().getProjectId());
+        }
+
+        if (task.getEndTime() != null)
+            outState.putLong(BundleHelper.DEADLINE, task.getEndTime().getTime());
+        else
+            outState.putLong(BundleHelper.DEADLINE, Long.MIN_VALUE);
+
+//        if (task.getReminder() != null) {
+//
+//        }
+
+        super.onSaveInstanceState(outState);
+    }
+
+
+
 
     protected void onDestroy() {
         realm.close();
