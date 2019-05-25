@@ -49,7 +49,7 @@ public class DisplayerNoteActivity extends AppCompatActivity {
 
         task = realm.where(Task.class).equalTo("taskId", taskId).findFirst();
 
-        setTitle(getString(R.string.all_notes) + " - " + task.getName());
+        setTitle(task.getName() + " - " + getString(R.string.all_notes));
 
         notes = getNotesByTask(taskId);
 

@@ -43,7 +43,7 @@ public class DisplayerTaskFromProjectActivity extends AppCompatActivity {
 
         project = new ProjectDao().getProjectById(getIntent().getStringExtra(BundleHelper.PROJECT_ID));
 
-        setTitle(project.getName() + " - " + getString(R.string.all_tasks));
+        setTitle(project.getName() + ": " + getString(R.string.all_project));
 
         taskDao = new TaskDao();
 

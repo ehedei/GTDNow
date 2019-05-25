@@ -55,7 +55,7 @@ public class EditTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
 
-        dateFormat = new SimpleDateFormat("dd.MM.yyyy '@' HH:mm:ss");
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy '@' HH:mm");
         editTextName = findViewById(R.id.edittext_edittask_name);
         switchIsEnded = findViewById(R.id.switch_edittask_isended);
         editTextPlace = findViewById(R.id.edittext_edittask_place);

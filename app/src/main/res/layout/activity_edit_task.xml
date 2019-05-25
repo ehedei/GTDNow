@@ -84,7 +84,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textview_edittask_project"
-                app:srcCompat="@android:drawable/ic_input_add" />
+                app:srcCompat="@drawable/ic_delete" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -124,7 +124,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textview_edittask_place"
-                app:srcCompat="@android:drawable/ic_input_add" />
+                app:srcCompat="@drawable/ic_delete" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -164,7 +164,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textview_edittask_deadline"
-                app:srcCompat="@android:drawable/ic_input_add" />
+                app:srcCompat="@drawable/ic_delete" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -204,7 +204,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textview_edittask_reminder"
-                app:srcCompat="@android:drawable/ic_input_add" />
+                app:srcCompat="@drawable/ic_delete" />
 
         </android.support.constraint.ConstraintLayout>
 

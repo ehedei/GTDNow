@@ -23,7 +23,7 @@ public class FinalizableEntitySelectorAdapter<T extends FinalizableEntity> exten
     public FinalizableEntitySelectorAdapter(List<T> finalizables, Context context) {
         this.finalizables = finalizables;
         this.context = context;
-        dateFormat = new SimpleDateFormat("dd.MM.yyyy '@' HH:mm:ss");
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy '@' HH:mm");
         actualDate = new Date();
     }
 

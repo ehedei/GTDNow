@@ -60,7 +60,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             dateTextViewValue = itemView.findViewById(R.id.textview_item_task_endline_value);
             dateTextView = itemView.findViewById(R.id.textview_item_task_endline);
             isCompletedSwitch = itemView.findViewById(R.id.switch_item_task_ended);
-            dateFormat = new SimpleDateFormat("dd.MM.yyyy '@' HH:mm:ss");
+            dateFormat = new SimpleDateFormat("dd.MM.yyyy '@' HH:mm");
             actualDate = new Date();
 
         }

@@ -48,7 +48,7 @@ public class SelectorTaskFromProjectActivity extends AppCompatActivity {
 
         project = new ProjectDao().getProjectById(getIntent().getStringExtra(BundleHelper.PROJECT_ID));
 
-        setTitle(project.getName() + " - " + getString(R.string.all_tasks));
+        setTitle(getString(R.string.all_tasks));
 
         tasks = taskDao.getTasksNotInProject(project.getProjectId());
 
@@ -78,7 +78,7 @@ public class SelectorTaskFromProjectActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == BundleHelper.EDIT_TASK_ACTIVITY) {
             if (resultCode == RESULT_OK) {
-                adapter.notifyDataSetChanged();
+                finish();
             }
         }
     }

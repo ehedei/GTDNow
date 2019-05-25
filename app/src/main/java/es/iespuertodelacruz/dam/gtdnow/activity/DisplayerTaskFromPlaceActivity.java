@@ -44,7 +44,7 @@ public class DisplayerTaskFromPlaceActivity extends AppCompatActivity {
 
         place = new PlaceDao().getPlaceById(getIntent().getStringExtra(BundleHelper.PLACE_ID));
 
-        setTitle(place.getName() + " - " + getString(R.string.all_tasks));
+        setTitle(getString(R.string.all_place) + " " + place.getName());
 
         taskDao = new TaskDao();
 

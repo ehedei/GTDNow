@@ -51,7 +51,7 @@ public class SelectorTaskFromGroupActivity extends AppCompatActivity {
         String groupId = intent.getStringExtra(BundleHelper.GROUP_ID);
         group = new GroupDao().getGroupById(groupId);
 
-        setTitle(group.getName() + " - " + getString(R.string.all_tasks));
+        setTitle(getString(R.string.all_tasks));
 
         tasks = taskDao.getTasksNotInGroup(group.getGroupId());
 
@@ -81,7 +81,7 @@ public class SelectorTaskFromGroupActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == BundleHelper.EDIT_TASK_ACTIVITY) {
             if (resultCode == RESULT_OK) {
-                adapter.notifyDataSetChanged();
+                finish();
             }
         }
     }

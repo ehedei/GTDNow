@@ -45,7 +45,7 @@ public class DisplayerTaskFromGroupActivity extends AppCompatActivity {
 
         group = new GroupDao().getGroupById(getIntent().getStringExtra(BundleHelper.GROUP_ID));
 
-        setTitle(group.getName() + " - " + getString(R.string.all_tasks));
+        setTitle(getString(R.string.all_group) + " " + group.getName());
 
         taskDao = new TaskDao();
 

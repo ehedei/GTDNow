@@ -55,7 +55,7 @@ public class EditProjectActivity extends AppCompatActivity {
         cancelButton = findViewById(R.id.button_editproject_back);
         saveButton = findViewById(R.id.button_editproject_save);
 
-        dateFormat = new SimpleDateFormat("dd.MM.yyyy '@' HH:mm:ss");
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy '@' HH:mm");
 
         realm = Realm.getDefaultInstance();
 

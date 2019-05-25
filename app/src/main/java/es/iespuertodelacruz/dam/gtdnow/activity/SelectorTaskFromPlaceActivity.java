@@ -47,7 +47,7 @@ public class SelectorTaskFromPlaceActivity extends AppCompatActivity {
 
         place = new PlaceDao().getPlaceById(getIntent().getStringExtra(BundleHelper.PLACE_ID));
 
-        setTitle(place.getName() + " - " + getString(R.string.all_tasks));
+        setTitle(getString(R.string.all_tasks));
 
         tasks = taskDao.getTasksNotInPlace(place.getPlaceId());
 
@@ -78,7 +78,7 @@ public class SelectorTaskFromPlaceActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == BundleHelper.EDIT_TASK_ACTIVITY) {
             if (resultCode == RESULT_OK) {
-                adapter.notifyDataSetChanged();
+                finish();
             }
         }
     }

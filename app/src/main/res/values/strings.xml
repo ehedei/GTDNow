@@ -3,10 +3,13 @@
     <string name="all_accept">Aceptar</string>
     <string name="all_cancel">Cancelar</string>
     <string name="all_groups">Listas de Tareas</string>
+    <string name="all_group">Lista de Tareas: </string>
     <string name="all_notes">Notas</string>
     <string name="all_projects">Projectos</string>
+    <string name="all_project">Tareas del Projecto</string>
     <string name="all_tasks">Tareas</string>
     <string name="all_places">Localizaciones</string>
+    <string name="all_place">Tareas en </string>
     <string name="all_remiders">Recordatorios</string>
 
     <string name="title_activity_edit_task">EditTaskActivity</string>
