@@ -13,6 +13,9 @@
     <string name="all_alltasks">Todas las tareas</string>
     <string name="all_remiders">Recordatorios</string>
 
+    <string name="nav_header_title">GTD Now!</string>
+    <string name="nav_header_subtitle">ehedeidev@gmail.com</string>
+
     <string name="title_activity_edit_task">EditTaskActivity</string>
 
     <string name="edittask_title_create">Nueva Tarea</string>
@@ -100,4 +103,9 @@
     <string name="context_menu_delete">Eliminar</string>
     <string name="context_menu_edit">Editar</string>
 
+    <!-- Menu -->
+    <string name="menu_configuration">Configuración</string>
+    <string name="menu_logout">Cerrar sesión</string>
+    <string name="navigation_drawer_open">Abre menú de navegación</string>
+    <string name="navigation_drawer_close">Cierra menú de navegación</string>
 </resources>

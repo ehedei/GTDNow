@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_tasks"
+            android:icon="@drawable/ic_task"
+            android:title="@string/all_tasks" />
+        <item
+            android:id="@+id/nav_projects"
+            android:icon="@drawable/ic_project"
+            android:title="@string/all_projects" />
+        <item
+            android:id="@+id/nav_places"
+            android:icon="@drawable/ic_place"
+            android:title="@string/all_places" />
+        <item
+            android:id="@+id/nav_groups"
+            android:icon="@drawable/ic_group"
+            android:title="@string/all_groups" />
+    </group>
+
+    <item android:title="@string/menu_configuration">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_config"
+                android:title="@string/menu_logout" />
+        </menu>
+    </item>
+
+</menu>
