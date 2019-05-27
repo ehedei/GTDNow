@@ -15,11 +15,12 @@ import es.iespuertodelacruz.dam.gtdnow.model.entity.NamedEntity;
 public class NamedEntitySelectorAdapter<T extends NamedEntity> extends BaseAdapter {
     private List<T> entities;
     private Context context;
+    private int layout;
 
-
-    public NamedEntitySelectorAdapter(List<T> entities, Context context) {
+    public NamedEntitySelectorAdapter(List<T> entities, Context context, int layout) {
         this.entities = entities;
         this.context = context;
+        this.layout = layout;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class NamedEntitySelectorAdapter<T extends NamedEntity> extends BaseAdapt
         NamedEntitySelectorAdapter.ViewHolder vh;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_limitless, null);
+            convertView = LayoutInflater.from(context).inflate(layout, null);
             vh = new NamedEntitySelectorAdapter.ViewHolder();
             vh.textViewName = convertView.findViewById(R.id.textview_item_limitless_namevalue);
             convertView.setTag(vh);

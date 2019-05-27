@@ -167,7 +167,7 @@ public class EditTaskActivity extends AppCompatActivity {
         }
 
         if (placeId != null) {
-            task.setPlace(new PlaceDao().getPlaceById(projectId));
+            task.setPlace(new PlaceDao().getPlaceById(placeId));
         }
 
         fillTaskFields();

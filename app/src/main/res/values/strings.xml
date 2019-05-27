@@ -10,6 +10,7 @@
     <string name="all_tasks">Tareas</string>
     <string name="all_places">Localizaciones</string>
     <string name="all_place">Tareas en </string>
+    <string name="all_alltasks">Todas las tareas</string>
     <string name="all_remiders">Recordatorios</string>
 
     <string name="title_activity_edit_task">EditTaskActivity</string>

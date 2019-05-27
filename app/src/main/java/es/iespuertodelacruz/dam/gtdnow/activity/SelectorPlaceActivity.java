@@ -48,7 +48,7 @@ public class SelectorPlaceActivity extends AppCompatActivity {
     private void prepareActivity() {
         places = placeDao.getPlaces();
 
-        adapter = new NamedEntitySelectorAdapter<>(places, getApplicationContext());
+        adapter = new NamedEntitySelectorAdapter<>(places, getApplicationContext(), R.layout.item_limitless);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

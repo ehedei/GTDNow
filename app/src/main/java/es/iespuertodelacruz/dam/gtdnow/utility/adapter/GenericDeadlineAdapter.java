@@ -46,6 +46,12 @@ public class GenericDeadlineAdapter<T extends FinalizableEntity> extends Recycle
         return list.size();
     }
 
+    public void removeAllListeners() {
+        this.itemClickListener = null;
+        this.itemLongClickListener = null;
+        this.switchListener = null;
+    }
+
     public static class GenericDeadlineViewHolder extends RecyclerView.ViewHolder {
         private TextView nameTextView;
         private TextView dateTextView;

@@ -125,8 +125,6 @@ public class EditProjectActivity extends AppCompatActivity {
                     }
                 }, year, month, day);
                 datePicker.show();
-
-
             }
         });
 
@@ -151,9 +149,7 @@ public class EditProjectActivity extends AppCompatActivity {
         if (taskId != null) {
             project.getTasks().add(new TaskDao().getTaskById(taskId));
         }
-
         fillTaskFields();
-
     }
 
     private void fillTaskFields() {

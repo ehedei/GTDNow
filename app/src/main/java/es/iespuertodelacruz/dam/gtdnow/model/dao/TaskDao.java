@@ -24,6 +24,12 @@ public class TaskDao {
         realm.commitTransaction();
     }
 
+    public void deleteTask(Task task) {
+        realm.beginTransaction();
+        task.deleteFromRealm();
+        realm.commitTransaction();
+    }
+
     public void setName(Task task, String name) {
         realm.beginTransaction();
         task.setName(name);
@@ -142,6 +148,5 @@ public class TaskDao {
     public void closeRealm() {
         realm.close();
     }
-
 
 }
