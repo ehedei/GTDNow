@@ -18,6 +18,17 @@ public class PlaceDao {
         realm.commitTransaction();
     }
 
+    public void createOrEditPlace(String name, Place place) {
+        realm.beginTransaction();
+        if (place == null) {
+            place = new Place();
+        }
+        place.setName(name);
+        realm.copyToRealmOrUpdate(place);
+        realm.commitTransaction();
+    }
+
+
     public void setName(Place place, String name) {
         realm.beginTransaction();
         place.setName(name);

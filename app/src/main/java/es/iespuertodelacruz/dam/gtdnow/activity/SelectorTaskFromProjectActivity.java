@@ -16,10 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
-import es.iespuertodelacruz.dam.gtdnow.model.dao.PlaceDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.ProjectDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
-import es.iespuertodelacruz.dam.gtdnow.model.entity.Place;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Project;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;

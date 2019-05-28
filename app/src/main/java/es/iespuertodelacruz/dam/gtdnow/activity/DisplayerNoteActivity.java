@@ -24,6 +24,8 @@ import android.widget.Toast;
 import org.jetbrains.annotations.NotNull;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.NoteDao;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Note;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
@@ -42,6 +44,7 @@ public class DisplayerNoteActivity extends AppCompatActivity {
     private RealmResults<Note> notes;
     private Task task;
     private FloatingActionButton fab;
+    private NoteDao noteDao;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +67,16 @@ public class DisplayerNoteActivity extends AppCompatActivity {
 
         realm = Realm.getDefaultInstance();
 
+        noteDao = new NoteDao();
+
         String taskId = getIntent().getStringExtra(BundleHelper.TASK_ID);
 
-        task = realm.where(Task.class).equalTo("taskId", taskId).findFirst();
+        task = new TaskDao().getTaskById(taskId);
+
 
         setTitle(task.getName() + " - " + getString(R.string.all_notes));
 
-        notes = getNotesByTask(taskId);
+        notes = noteDao.getNotesByTask(taskId);
 
         recyclerView = findViewById(R.id.recyclerview_selector);
         layoutManager = new LinearLayoutManager(this);
@@ -81,7 +87,7 @@ public class DisplayerNoteActivity extends AppCompatActivity {
             @Override
             public void OnItemSwitch(boolean isEnded, int position) {
                 Note note = notes.get(position);
-                setCompletedInRealm(note, isEnded);
+                noteDao.setCompletedInRealm(note, isEnded);
             }
         }, new NoteAdapter.OnItemLongClickListener() {
             @Override
@@ -94,7 +100,7 @@ public class DisplayerNoteActivity extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.contextmenu_delete:
-                                deleteNote(notes.get(position));
+                                noteDao.deleteNoteFromRealm(notes.get(position));
                                 return true;
                             case R.id.contextmenu_edit:
                                 showAlertForEditingNote(notes.get(position));
@@ -157,44 +163,13 @@ public class DisplayerNoteActivity extends AppCompatActivity {
                 if (name.isEmpty())
                     Toast.makeText(getApplicationContext(), getResources().getText(R.string.message_name_required), Toast.LENGTH_SHORT).show();
                 else {
-                    createOrEditNote(name, note);
+                    noteDao.createOrEditNote(name, note);
                 }
             }
         });
         builder.create().show();
     }
 
-
-
-    // CRUD
-    private RealmResults<Note> getNotesByTask(String taskId) {
-        return realm.where(Note.class).equalTo("task.taskId", taskId).sort("isCompleted", Sort.ASCENDING).findAll();
-    }
-
-    private void deleteNote(Note note) {
-        realm.beginTransaction();
-        note.deleteFromRealm();
-        realm.commitTransaction();
-    }
-
-    private void createOrEditNote(String name, Note note) {
-        realm.beginTransaction();
-        if (note == null) {
-            note = new Note();
-            task.getNotes().add(note);
-        }
-        note.setName(name);
-        realm.copyToRealmOrUpdate(note);
-        realm.commitTransaction();
-
-    }
-
-    private void setCompletedInRealm(@NotNull Note note, boolean isEnded) {
-        realm.beginTransaction();
-        note.setCompleted(isEnded);
-        realm.copyToRealmOrUpdate(note);
-        realm.commitTransaction();
-    }
 
     @Override
     public void onBackPressed() {

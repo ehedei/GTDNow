@@ -17,8 +17,8 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 
 import es.iespuertodelacruz.dam.gtdnow.R;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.GroupDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
-import es.iespuertodelacruz.dam.gtdnow.model.entity.FinalizableEntity;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Group;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
@@ -141,7 +141,7 @@ public class SelectorTaskActivity extends AppCompatActivity {
         switch (mode) {
             case BundleHelper.TASK_FROM_GROUP:
                 String groupId = intent.getStringExtra(BundleHelper.GROUP_ID);
-                Group group = realm.where(Group.class).equalTo("groupId", groupId).findFirst();
+                Group group = new GroupDao().getGroupById(groupId);
                 taskDao.removeGroup(task, group);
                 break;
             case BundleHelper.TASK_FROM_PROJECT:

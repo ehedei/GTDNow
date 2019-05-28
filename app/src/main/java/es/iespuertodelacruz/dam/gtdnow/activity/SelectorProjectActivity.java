@@ -14,17 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import org.jetbrains.annotations.NotNull;
-
 import es.iespuertodelacruz.dam.gtdnow.R;
-import es.iespuertodelacruz.dam.gtdnow.model.dao.GroupDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.ProjectDao;
-import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
-import es.iespuertodelacruz.dam.gtdnow.model.entity.Group;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Project;
-import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
 import es.iespuertodelacruz.dam.gtdnow.utility.MenuListener;
 import es.iespuertodelacruz.dam.gtdnow.utility.adapter.FinalizableEntitySelectorAdapter;

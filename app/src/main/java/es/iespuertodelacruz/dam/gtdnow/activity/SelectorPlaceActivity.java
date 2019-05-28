@@ -19,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import es.iespuertodelacruz.dam.gtdnow.R;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.PlaceDao;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Place;

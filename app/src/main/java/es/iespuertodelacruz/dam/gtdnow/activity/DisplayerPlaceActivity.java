@@ -23,6 +23,7 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 import org.jetbrains.annotations.NotNull;
 import es.iespuertodelacruz.dam.gtdnow.R;
+import es.iespuertodelacruz.dam.gtdnow.model.dao.PlaceDao;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Place;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
 import es.iespuertodelacruz.dam.gtdnow.utility.MenuListener;
@@ -39,6 +40,7 @@ public class DisplayerPlaceActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private RealmResults<Place> places;
     private Realm realm;
+    private PlaceDao placeDao;
 
 
     @Override
@@ -60,7 +62,10 @@ public class DisplayerPlaceActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(R.mipmap.ic_gtd_inside_foreground);
 
         realm = Realm.getDefaultInstance();
-        places = realm.where(Place.class).sort("name", Sort.ASCENDING).findAll();
+
+        placeDao = new PlaceDao();
+
+        places = placeDao.getPlaces();
 
         setTitle(getString(R.string.all_places));
 
@@ -88,7 +93,7 @@ public class DisplayerPlaceActivity extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.contextmenu_delete:
-                                deletePlace(places.get(position));
+                                placeDao.deletePlace(places.get(position));
                                 return true;
                             case R.id.contextmenu_edit:
                                 showAlertForEditingPlace(places.get(position));
@@ -157,31 +162,13 @@ public class DisplayerPlaceActivity extends AppCompatActivity {
                 if (name.isEmpty())
                     Toast.makeText(getApplicationContext(), getResources().getText(R.string.message_name_required), Toast.LENGTH_SHORT).show();
                 else {
-                    createOrEditPlace(name, place);
+                    placeDao.createOrEditPlace(name, place);
                 }
             }
         });
         builder.create().show();
     }
 
-
-
-    // CRUD
-    private void createOrEditPlace(String name, Place place) {
-        realm.beginTransaction();
-        if (place == null) {
-            place = new Place();
-        }
-        place.setName(name);
-        realm.copyToRealmOrUpdate(place);
-        realm.commitTransaction();
-    }
-
-    private void deletePlace(@NotNull Place place) {
-        realm.beginTransaction();
-        place.deleteFromRealm();
-        realm.commitTransaction();
-    }
 
     @Override
     public void onBackPressed() {
@@ -209,5 +196,4 @@ public class DisplayerPlaceActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

@@ -14,13 +14,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
-
 import es.iespuertodelacruz.dam.gtdnow.R;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.GroupDao;
 import es.iespuertodelacruz.dam.gtdnow.model.dao.TaskDao;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Group;
-import es.iespuertodelacruz.dam.gtdnow.model.entity.Place;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
 import es.iespuertodelacruz.dam.gtdnow.utility.MenuListener;
