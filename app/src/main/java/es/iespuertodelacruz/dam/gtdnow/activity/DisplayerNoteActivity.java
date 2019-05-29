@@ -163,7 +163,7 @@ public class DisplayerNoteActivity extends AppCompatActivity {
                 if (name.isEmpty())
                     Toast.makeText(getApplicationContext(), getResources().getText(R.string.message_name_required), Toast.LENGTH_SHORT).show();
                 else {
-                    noteDao.createOrEditNote(name, note);
+                    noteDao.createOrEditNote(task, note, name);
                 }
             }
         });

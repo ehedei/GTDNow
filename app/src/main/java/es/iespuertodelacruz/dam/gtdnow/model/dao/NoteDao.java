@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.dam.gtdnow.model.dao;
 
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Note;
+import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
@@ -31,14 +32,14 @@ public class NoteDao {
         realm.commitTransaction();
     }
 
-    public void createOrEditNote(String name, Note note) {
+    public void createOrEditNote(Task task, Note note, String name) {
         realm.beginTransaction();
         if (note == null) {
             note = new Note();
+            task.getNotes().add(note);
         }
         note.setName(name);
         realm.copyToRealmOrUpdate(note);
         realm.commitTransaction();
     }
-
 }
