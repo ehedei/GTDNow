@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "476371586103",
+    "firebase_url": "https://gtdnow-dam.firebaseio.com",
+    "project_id": "gtdnow-dam",
+    "storage_bucket": "gtdnow-dam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476371586103:android:02056389b4500f52",
+        "android_client_info": {
+          "package_name": "es.iespuertodelacruz.dam.gtdnow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476371586103-13m002j32fkb5pmbp6ve56m9sbvdlmbo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRQFEENS9ZdmeXdwCoX21Mip9aA9qwsEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476371586103-13m002j32fkb5pmbp6ve56m9sbvdlmbo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

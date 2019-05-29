@@ -13,6 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -23,59 +29,48 @@ import es.iespuertodelacruz.dam.gtdnow.utility.MenuListener;
 
 
 public class MainActivity extends AppCompatActivity  {
-    private List<Task> tasks;
+    private EditText emailEditText;
+    private EditText passEditText;
+    private EditText repeatedPassEditText;
+    private Switch isNewSwitch;
+    private Button loginButton;
+    private TextView recoverPassTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        emailEditText = findViewById(R.id.edittext_main_email);
+        passEditText = findViewById(R.id.edittext_main_pass);
+        repeatedPassEditText = findViewById(R.id.edittext_main_repeatedpass);
+        isNewSwitch = findViewById(R.id.switch_main_isregistered);
+        loginButton = findViewById(R.id.button_main_login);
+        recoverPassTextView = findViewById(R.id.textview_main_recoverpass);
+
+        isNewSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    repeatedPassEditText.setVisibility(View.VISIBLE);
+                    loginButton.setText(R.string.main_button_register);
+                    recoverPassTextView.setVisibility(View.GONE);
+                }
+                else{
+                    repeatedPassEditText.setVisibility(View.GONE);
+                    loginButton.setText(R.string.main_button_login);
+                    recoverPassTextView.setVisibility(View.VISIBLE);
+                }
             }
         });
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        recoverPassTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Se ha enviado un email a su correo electrónico para recuperar la contraseña", Toast.LENGTH_LONG).show();
+            }
+        });
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(new MenuListener(this));
-        toolbar.setNavigationIcon(R.mipmap.ic_gtd_inside_foreground);
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

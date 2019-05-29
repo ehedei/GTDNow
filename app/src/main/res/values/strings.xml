@@ -108,4 +108,14 @@
     <string name="menu_logout">Cerrar sesión</string>
     <string name="navigation_drawer_open">Abre menú de navegación</string>
     <string name="navigation_drawer_close">Cierra menú de navegación</string>
+
+    <!--Main-->
+    <string name="main_email_hint">Introduzca su cuenta de Google</string>
+    <string name="main_pass_hint">Introduzca su contraseña</string>
+    <string name="main_repeatpass_hint">Repita su contraseña</string>
+    <string name="main_isregistered">Nuevo usuario</string>
+    <string name="main_button_register">Registrar</string>
+    <string name="main_button_login">Acceder</string>
+    <string name="main_textview_recover">Restablecer contraseña</string>
+
 </resources>

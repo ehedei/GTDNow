@@ -42,9 +42,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/fab_separation"
+        app:layout_constraintBottom_toBottomOf="@+id/textview_item_task_namevalue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_item_task_ended"
-        app:layout_constraintBottom_toBottomOf="@+id/textview_item_task_namevalue"/>
+        app:layout_constraintTop_toBottomOf="@+id/textview_item_task_ended" />
 
     <TextView
         android:id="@+id/textview_item_task_endline"
@@ -53,7 +53,7 @@
         android:layout_marginStart="@dimen/fab_separation"
         android:text="@string/item_task_endline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_item_task_namevalue"/>
+        app:layout_constraintTop_toBottomOf="@+id/textview_item_task_namevalue" />
 
     <TextView
         android:id="@+id/textview_item_task_endline_value"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/fab_separation"
         android:text="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textview_item_task_endline"/>
+        app:layout_constraintBaseline_toBaselineOf="@+id/textview_item_task_endline"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

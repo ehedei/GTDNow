@@ -127,15 +127,12 @@ public class DisplayerTaskActivity extends AppCompatActivity{
                 switch (position) {
                     case 1:
                         fillSpinnerGroupByProject();
-                        spinnerGroupBy.setVisibility(View.VISIBLE);
                         break;
                     case 2:
                         fillSpinnerGroupByPlace();
-                        spinnerGroupBy.setVisibility(View.VISIBLE);
                         break;
                     case 3:
                         fillSpinnerGroupByGroup();
-                        spinnerGroupBy.setVisibility(View.VISIBLE);
                         break;
                     default:
                         group = null;
@@ -161,7 +158,15 @@ public class DisplayerTaskActivity extends AppCompatActivity{
 
     private void fillSpinnerGroupByProject() {
         RealmResults<Project> projects = new ProjectDao().getProjects();
-        SpinAdapter<Project> spinAdapter = new SpinAdapter<> (this, android.R.layout.simple_spinner_item, projects);
+
+        if (!projects.isEmpty())
+            spinnerGroupBy.setVisibility(View.VISIBLE);
+        else {
+            spinnerGroupBy.setVisibility(View.GONE);
+            fillRecyclerView(taskDao.getTasksByProject(""));
+        }
+
+        SpinAdapter<Project> spinAdapter = new SpinAdapter<>(this, android.R.layout.simple_spinner_item, projects);
 
         spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGroupBy.setAdapter(spinAdapter);
@@ -182,11 +187,19 @@ public class DisplayerTaskActivity extends AppCompatActivity{
             }
         });
 
+
     }
 
     private void fillSpinnerGroupByPlace() {
         RealmResults<Place> places = new PlaceDao().getPlaces();
-        SpinAdapter<Place> spinAdapter = new SpinAdapter<> (this, android.R.layout.simple_spinner_item, places);
+
+        if (!places.isEmpty())
+            spinnerGroupBy.setVisibility(View.VISIBLE);
+        else {
+            spinnerGroupBy.setVisibility(View.GONE);
+            fillRecyclerView(taskDao.getTasksByPlace(""));
+        }
+        SpinAdapter<Place> spinAdapter = new SpinAdapter<>(this, android.R.layout.simple_spinner_item, places);
 
         spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGroupBy.setAdapter(spinAdapter);
@@ -205,11 +218,20 @@ public class DisplayerTaskActivity extends AppCompatActivity{
                 fillRecyclerView(taskDao.getTasks());
             }
         });
+
     }
 
     private void fillSpinnerGroupByGroup() {
         RealmResults<Group> groups = new GroupDao().getGroups();
-        SpinAdapter<Group> spinAdapter = new SpinAdapter<> (this, android.R.layout.simple_spinner_item, groups);
+
+        if (!groups.isEmpty())
+            spinnerGroupBy.setVisibility(View.VISIBLE);
+        else {
+            spinnerGroupBy.setVisibility(View.GONE);
+            fillRecyclerView(taskDao.getTasksByGroup(""));
+        }
+
+        SpinAdapter<Group> spinAdapter = new SpinAdapter<>(this, android.R.layout.simple_spinner_item, groups);
 
         spinAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGroupBy.setAdapter(spinAdapter);
@@ -228,6 +250,7 @@ public class DisplayerTaskActivity extends AppCompatActivity{
                 fillRecyclerView(taskDao.getTasks());
             }
         });
+
     }
 
     protected void onDestroy() {
