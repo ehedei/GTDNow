@@ -33,7 +33,7 @@ import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
-public class DisplayerPlaceActivity extends AppCompatActivity {
+public class DisplayerPlaceActivity extends MenuActivity {
     private FloatingActionButton fab;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -169,31 +169,4 @@ public class DisplayerPlaceActivity extends AppCompatActivity {
         builder.create().show();
     }
 
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

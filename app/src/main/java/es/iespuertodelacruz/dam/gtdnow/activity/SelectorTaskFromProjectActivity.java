@@ -26,7 +26,7 @@ import es.iespuertodelacruz.dam.gtdnow.utility.adapter.FinalizableEntitySelector
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class SelectorTaskFromProjectActivity extends AppCompatActivity {
+public class SelectorTaskFromProjectActivity extends MenuActivity {
     private FloatingActionButton fab;
     private RealmResults<Task> tasks;
     private Realm realm;
@@ -101,30 +101,4 @@ public class SelectorTaskFromProjectActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

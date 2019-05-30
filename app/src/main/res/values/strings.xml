@@ -2,126 +2,119 @@
     <string name="app_name">GTD Now!</string>
 
     <string name="channel_name">GTD Now Reminder</string>
-    <string name="channel_description">Recordatorios de GTDNow!</string>
+    <string name="channel_description">GTDNow! Reminders</string>
 
-    <string name="all_accept">Aceptar</string>
-    <string name="all_cancel">Cancelar</string>
-    <string name="all_groups">Listas de Tareas</string>
-    <string name="all_group">Lista de Tareas: </string>
-    <string name="all_notes">Notas</string>
-    <string name="all_projects">Projectos</string>
-    <string name="all_project">Tareas del Projecto</string>
-    <string name="all_tasks">Tareas</string>
-    <string name="all_places">Localizaciones</string>
-    <string name="all_place">Tareas en </string>
-    <string name="all_alltasks">Todas las tareas</string>
-    <string name="all_remiders">Recordatorios</string>
+    <string name="all_accept">Accept</string>
+    <string name="all_cancel">Cancel</string>
+    <string name="all_groups">Task Groups</string>
+    <string name="all_group">Task group: </string>
+    <string name="all_notes">Notes</string>
+    <string name="all_projects">Projects</string>
+    <string name="all_project">Tasks from Project</string>
+    <string name="all_tasks">Tasks</string>
+    <string name="all_places">Places</string>
+    <string name="all_place">Tasks in </string>
+    <string name="all_alltasks">All Tasks</string>
+    <string name="all_remiders">Reminders</string>
+    <string name="all_about_button">Info</string>
+    <string name="all_about">GTD Now! v1.0</string>
+
 
     <string name="nav_header_title">GTD Now!</string>
     <string name="nav_header_subtitle">ehedeidev@gmail.com</string>
 
-    <string name="title_activity_edit_task">EditTaskActivity</string>
 
-    <string name="edittask_title_create">Nueva Tarea</string>
-    <string name="edittask_title_edit">Editar Tarea</string>
-    <string name="edittask_name">Tarea a realizar:</string>
-    <string name="edittask_name_hint">Introduzca tarea</string>
-    <string name="edittask_isended">Tarea realizada</string>
-    <string name="edittask_group_header">Incluir en alguna lista</string>
-    <string name="edittask_project_header">Incluir en algún projecto</string>
-    <string name="edittask_group">Listas de tareas</string>
-    <string name="edittask_project_hint">Proyectos</string>
-    <string name="edittask_place">Localización</string>
-    <string name="edittask_place_hint">Incluir una localización</string>
-    <string name="edittask_deadline">Fecha de finalización:</string>
-    <string name="edittask_deadline_hint">Sin determinar</string>
-    <string name="edittask_notes">Notas</string>
-    <string name="edittask_notes_header">Agregue notas:</string>
-    <string name="edittask_repeatable">Repetición:</string>
-    <string name="edittask_repeatable_hint">Sin determinar</string>
-    <string name="edittask_reminder">Recordatorio:</string>
-    <string name="edittask_reminder_hint">Sin determinar</string>
-    <string name="edittask_reminder_error">Recordatorio incorrecto</string>
+    <string name="edittask_title_create">New Task</string>
+    <string name="edittask_title_edit">Edit Task</string>
+    <string name="edittask_name">Task name:</string>
+    <string name="edittask_name_hint">Introduce name</string>
+    <string name="edittask_isended">Done</string>
+    <string name="edittask_group_header">Include in any Task Group</string>
+    <string name="edittask_project_header">Include in any Project</string>
+    <string name="edittask_group">Task Group</string>
+    <string name="edittask_project_hint">Projects</string>
+    <string name="edittask_place">Place</string>
+    <string name="edittask_place_hint">Include a Place</string>
+    <string name="edittask_deadline">Deadline:</string>
+    <string name="edittask_deadline_hint">Undefined</string>
+    <string name="edittask_notes">Notes</string>
+    <string name="edittask_notes_header">Add notes:</string>
+    <string name="edittask_reminder">Reminder:</string>
+    <string name="edittask_reminder_hint">Undefined</string>
+    <string name="edittask_reminder_error">Reminder is wrong</string>
 
-    <string name="editproject_title_create">Nuevo Proyecto</string>
-    <string name="editproject_title_edit">Editar Proyecto</string>
-    <string name="editproject_name">Proyecto</string>
-    <string name="editproject_name_hint">Introduzca nombre</string>
-    <string name="editproject_isended">Proyecto finalizado</string>
-    <string name="editproject_task_header">Añadir Tareas</string>
-    <string name="editproject_task">Tareas</string>
-    <string name="editproject_deadline">Fecha de finalización:</string>
-    <string name="editproject_deadline_hint">Sin determinar</string>
+    <string name="editproject_title_create">New Project</string>
+    <string name="editproject_title_edit">Edit Proyect</string>
+    <string name="editproject_name">Project</string>
+    <string name="editproject_name_hint">Insert name</string>
+    <string name="editproject_isended">Ended</string>
+    <string name="editproject_task_header">Add Tasks</string>
+    <string name="editproject_task">Tasks</string>
+    <string name="editproject_deadline">Deadline:</string>
+    <string name="editproject_deadline_hint">Undefined</string>
 
-    <string name="editgroup_message_create">Crear nueva Lista de Tareas</string>
-    <string name="editgroup_title_create">Nueva Lista</string>
-    <string name="editgroup_message_edit">Editar Lista de Tareas</string>
-    <string name="editgroup_name">Nombre</string>
-    <string name="editgroup_name_hint">Introduzca nombre</string>
-    <string name="editgroup_task_header">Añadir Tareas</string>
-    <string name="editgroup_task">Tareas</string>
+    <string name="editgroup_message_create">Create a new Task Group</string>
+    <string name="editgroup_title_create">New Group</string>
+    <string name="editgroup_message_edit">Editar Group</string>
+    <string name="editgroup_name">Name</string>
+    <string name="editgroup_name_hint">Insert Name</string>
+    <string name="editgroup_task_header">Add Tasks</string>
+    <string name="editgroup_task">Tasks</string>
 
 
-    <string name="editnote_title_create">Nueva Nota</string>
-    <string name="editnote_message_create">Crear nueva Nota para la Tarea</string>
-    <string name="editnote_title_edit">Editar Nota</string>
-    <string name="editnote_message_edit">Crear Nota para la Tarea</string>
-    <string name="editnote_name">Nota</string>
-    <string name="editnote_name_hint">Introduzca el texto de la nota</string>
-    <string name="editnote_isended">Nota finalizada</string>
+    <string name="editnote_title_create">New Note</string>
+    <string name="editnote_message_create">Create new Note for Task</string>
+    <string name="editnote_title_edit">Edit Note</string>
+    <string name="editnote_message_edit">Edit Note for Task</string>
+    <string name="editnote_name">Note</string>
+    <string name="editnote_name_hint">Introduce the text of the Note</string>
+    <string name="editnote_isended">Ended</string>
 
-    <string name="editplace_title_create">Nueva Localización</string>
-    <string name="editplace_message_create">Crear una nueva localización</string>
-    <string name="editplace_message_edit">Editar localización</string>
-    <string name="editplace_name">Localización</string>
-    <string name="editplace_name_hint">Introduzca localización</string>
+    <string name="editplace_title_create">New Place</string>
+    <string name="editplace_message_create">Create new Place</string>
+    <string name="editplace_message_edit">Edit Place</string>
+    <string name="editplace_name">Place</string>
+    <string name="editplace_name_hint">Introduce Place name</string>
 
 
     <!-- Items -->
 
-    <string name="item_deadline_name">Nombre:</string>
-    <string name="item_deadline_isended">Finalizado</string>
+    <string name="item_deadline_name">Name:</string>
+    <string name="item_deadline_isended">Ended</string>
 
-    <string name="item_limitless_name">Nombre:</string>
+    <string name="item_limitless_name">Name:</string>
 
-    <string name="item_task_name">Nombre:</string>
-    <string name="item_task_isended">Finalizado</string>
-    <string name="item_task_endline">Fecha finalización</string>
+    <string name="item_task_name">Name:</string>
+    <string name="item_task_isended">Ended</string>
+    <string name="item_task_endline">Deadline</string>
 
-    <string name="all_button_new">Nuevo</string>
-    <string name="all_button_save">Guardar</string>
-    <string name="all_button_back">Volver</string>
+    <string name="all_button_new">New</string>
+    <string name="all_button_save">Save</string>
+    <string name="all_button_back">Back</string>
 
-    <string name="notes_all">Todas</string>
-    <string name="notes_notended">Sin finalizar</string>
-    <string name="notes_ended">Finalizadas</string>
+    <string name="notes_all">All notes</string>
+    <string name="notes_notended">Not ended</string>
+    <string name="notes_ended">Ended</string>
 
-    <string name="selectortask_all">Todas</string>
-    <string name="selectortask_notended">Sin finalizar</string>
-    <string name="selectortask_ended">Finalizadas</string>
+    <string name="selectortask_all">All</string>
+    <string name="selectortask_notended">Not ended</string>
+    <string name="selectortask_ended">Ended</string>
 
 
     <!-- Messages -->
-    <string name="message_name_required">El nombre es requerido</string>
+    <string name="message_name_required">Name is required</string>
 
     <!-- Context Menu -->
-    <string name="context_menu_delete">Eliminar</string>
-    <string name="context_menu_edit">Editar</string>
+    <string name="context_menu_delete">Delete</string>
+    <string name="context_menu_edit">Edit</string>
 
     <!-- Menu -->
-    <string name="menu_configuration">Configuración</string>
-    <string name="menu_logout">Cerrar sesión</string>
-    <string name="navigation_drawer_open">Abre menú de navegación</string>
-    <string name="navigation_drawer_close">Cierra menú de navegación</string>
+    <string name="menu_configuration">Configuration</string>
+    <string name="menu_logout">Sign out</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!--Main-->
-    <string name="main_email_hint">Introduzca su cuenta de Google</string>
-    <string name="main_pass_hint">Introduzca su contraseña</string>
-    <string name="main_repeatpass_hint">Repita su contraseña</string>
-    <string name="main_isregistered">Nuevo usuario</string>
-    <string name="main_button_register">Registrar</string>
-    <string name="main_button_login">Acceder</string>
-    <string name="main_textview_recover">Restablecer contraseña</string>
     <string name="main_error_message">No se ha podido iniciar sesión</string>
 
 </resources>
