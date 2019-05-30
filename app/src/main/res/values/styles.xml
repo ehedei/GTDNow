@@ -22,7 +22,7 @@
 
     <style name="ButtonAccept">
         <item name="android:padding">@dimen/padding_buttons</item>
-        <item name="android:textColor">@color/primary_light</item>
+        <item name="android:textColor">@color/icons</item>
         <item name="android:textStyle">bold</item>
         <item name="android:backgroundTint">@color/accent_dark</item>
     </style>
