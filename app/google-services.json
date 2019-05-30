@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "476371586103-84h5d70hbfbtbpvmrn2fitg088sv3u6t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "es.iespuertodelacruz.dam.gtdnow",
+            "certificate_hash": "e48540486dd9904ead090fa2cf9c7ed04dd48281"
+          }
+        },
+        {
           "client_id": "476371586103-13m002j32fkb5pmbp6ve56m9sbvdlmbo.apps.googleusercontent.com",
           "client_type": 3
         }

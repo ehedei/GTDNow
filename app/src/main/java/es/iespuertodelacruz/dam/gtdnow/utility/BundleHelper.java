@@ -1,12 +1,12 @@
 package es.iespuertodelacruz.dam.gtdnow.utility;
 
 public class BundleHelper {
-    public final static String DATETIME = "dateTime";
     public final static String GROUP_ID = "groupId";
     public final static String PROJECT_ID = "projectId";
     public final static String TASK_ID = "taskId";
     public final static String PLACE_ID = "placeId";
 
+    public final static String REMINDER = "reminder";
     public final static String DEADLINE = "deadline";
     public final static String NAME = "name";
     public final static String IS_ENDED = "isEnded";
@@ -22,5 +22,10 @@ public class BundleHelper {
     public final static int TASK_FROM_PLACE = 3;
 
     public final static String EDIT_TASK_MODE = "selectorTaskMode";
+
+    public final static int RC_SIGN_IN = 100;
+
+    public final static String TASK_NAME = "taskName";
+    public final static String TASK_REMINDER = "taskReminder";
 
 }

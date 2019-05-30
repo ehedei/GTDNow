@@ -1,103 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/padding_main">
-
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fab_separation"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:layout_marginEnd="@dimen/fab_separation"
+        android:layout_width="363dp"
+        android:layout_height="200dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25"
         app:srcCompat="@drawable/gtdnow_img" />
-
-    <EditText
-        android:id="@+id/edittext_main_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fab_separation"
-
-        android:layout_marginEnd="@dimen/fab_separation"
-        android:ems="10"
-        android:hint="@string/main_email_hint"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <EditText
-        android:id="@+id/edittext_main_pass"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fab_separation"
-        android:layout_marginTop="@dimen/fab_separation"
-        android:layout_marginEnd="@dimen/fab_separation"
-        android:ems="10"
-        android:hint="@string/main_pass_hint"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_main_email" />
-
-    <EditText
-        android:id="@+id/edittext_main_repeatedpass"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fab_separation"
-        android:layout_marginTop="@dimen/fab_separation"
-        android:layout_marginEnd="@dimen/fab_separation"
-        android:ems="10"
-        android:hint="@string/main_repeatpass_hint"
-        android:inputType="textPassword"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_main_pass" />
-
-    <Switch
-        android:id="@+id/switch_main_isregistered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fab_separation"
-        android:layout_marginEnd="@dimen/fab_separation"
-        android:layout_marginBottom="40dp"
-        android:text="@string/main_isregistered"
-        app:layout_constraintBottom_toTopOf="@+id/button_main_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button_main_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fab_separation"
-        android:layout_marginTop="@dimen/fab_separation"
-        android:layout_marginEnd="@dimen/fab_separation"
-        android:layout_marginBottom="@dimen/fab_separation"
-        android:text="@string/main_button_login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_main_pass"
-        app:layout_constraintVertical_bias="0.851" />
-
-    <TextView
-        android:id="@+id/textview_main_recoverpass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/fab_separation"
-        android:layout_marginEnd="@dimen/fab_separation"
-        android:text="@string/main_textview_recover"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_main_login" />
 </android.support.constraint.ConstraintLayout>

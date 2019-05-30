@@ -19,7 +19,7 @@ public class Task extends RealmObject implements FinalizableEntity, Cloneable {
 
     private Date endTime;
 
-    private String reminder;
+    private Date reminder;
 
     private Place place;
 
@@ -104,11 +104,11 @@ public class Task extends RealmObject implements FinalizableEntity, Cloneable {
         this.notes = notes;
     }
 
-    public String getReminder() {
+    public Date getReminder() {
         return reminder;
     }
 
-    public void setReminder(String reminder) {
+    public void setReminder(Date reminder) {
         this.reminder = reminder;
     }
 

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="es.iespuertodelacruz.dam.gtdnow">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:name=".application.GTDNow"
         android:allowBackup="true"
@@ -10,6 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <receiver android:name=".utility.ReminderReceiver"/>
+
         <activity android:name=".activity.SelectorProjectActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activity.SelectorPlaceActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activity.DisplayerTaskFromProjectActivity" android:theme="@style/AppTheme.NoActionBar"/>
@@ -43,6 +48,7 @@
         <activity
             android:name=".activity.EditTaskActivity"
             android:theme="@style/Theme.MaterialComponents.Light.Dialog" />
+
     </application>
 
 </manifest>

@@ -85,22 +85,24 @@ public class TaskDao {
         realm.commitTransaction();
     }
 
-    public void addReminder(Task task, String reminder) {
+    public void addReminder(Task task, Date reminder) {
         realm.beginTransaction();
         task.setReminder(reminder);
         realm.commitTransaction();
     }
 
-    public void deleteReminder(Task task, String reminder) {
+    public void editReminder(Task task, Date reminder) {
         realm.beginTransaction();
-        task.setReminder(null);
-        //task.getReminder().deleteFromRealm();
+        task.setReminder(reminder);
         realm.commitTransaction();
-
     }
 
     public Task getTaskById(String taskId) {
         return realm.where(Task.class).equalTo("taskId", taskId).findFirst();
+    }
+
+    public RealmResults<Task> getTasksWithReminder() {
+        return realm.where(Task.class).not().isNull("reminder").findAll();
     }
 
     public RealmResults<Task> getTasks() {

@@ -1,9 +1,15 @@
 package es.iespuertodelacruz.dam.gtdnow.activity;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +35,8 @@ import es.iespuertodelacruz.dam.gtdnow.model.entity.Place;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Project;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
+import es.iespuertodelacruz.dam.gtdnow.utility.ReminderReceiver;
+import es.iespuertodelacruz.dam.gtdnow.utility.TaskAlarmScheduler;
 import io.realm.Realm;
 
 public class EditTaskActivity extends AppCompatActivity {
@@ -89,7 +97,7 @@ public class EditTaskActivity extends AppCompatActivity {
         editTextPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SelectorPlaceActivity.class);
+                Intent intent = new Intent(EditTaskActivity.this, SelectorPlaceActivity.class);
                 startActivityForResult(intent, BundleHelper.PLACE_ACTIVITY);
             }
         });
@@ -97,7 +105,7 @@ public class EditTaskActivity extends AppCompatActivity {
         editTextProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SelectorProjectActivity.class);
+                Intent intent = new Intent(EditTaskActivity.this, SelectorProjectActivity.class);
                 startActivityForResult(intent, BundleHelper.PROJECT_ACTIVITY);
             }
         });
@@ -134,6 +142,51 @@ public class EditTaskActivity extends AppCompatActivity {
                 }, year, month, day);
                 datePicker.show();
             }
+        });
+
+        editTextReminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(task.getEndTime());
+
+                if (task.getReminder() == null) {
+                    calendar.setTime(task.getEndTime());
+                }
+                else {
+                    calendar.setTime(task.getReminder());
+                }
+
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePicker = new DatePickerDialog(EditTaskActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(year, month, dayOfMonth);
+
+                        TimePickerDialog timePicker = new TimePickerDialog(EditTaskActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                calendar.set(Calendar.MINUTE, minute);
+
+                                if (calendar.before(Calendar.getInstance())) {
+                                    Toast.makeText(EditTaskActivity.this, R.string.edittask_reminder_error, Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    task.setReminder(calendar.getTime());
+                                    fillTaskFields();
+                                }
+                            }
+                        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+
+                        timePicker.show();
+                    }
+                }, year, month, day);
+                datePicker.show();            }
+
         });
 
         prepareTask();
@@ -216,10 +269,13 @@ public class EditTaskActivity extends AppCompatActivity {
         if (task.getEndTime() != null) {
             editTextEndTime.setText(dateFormat.format(task.getEndTime()));
             imageButtonEndTime.setVisibility(View.VISIBLE);
+            editTextReminder.setClickable(true);
+            editTextReminder.setEnabled(true);
             imageButtonEndTime.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     task.setEndTime(null);
+                    task.setReminder(null);
                     fillTaskFields();
                 }
             });
@@ -229,11 +285,13 @@ public class EditTaskActivity extends AppCompatActivity {
             editTextEndTime.setText("");
             imageButtonEndTime.setVisibility(View.GONE);
             imageButtonEndTime.setOnClickListener(null);
+            editTextReminder.setClickable(false);
+            editTextReminder.setEnabled(false);
         }
 
 
         if (task.getReminder() != null) {
-            editTextReminder.setText(task.getReminder());
+            editTextReminder.setText(dateFormat.format(task.getReminder()));
             imageButtonReminder.setVisibility(View.VISIBLE);
             imageButtonReminder.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -275,6 +333,14 @@ public class EditTaskActivity extends AppCompatActivity {
         else {
             task.setName(name);
             taskDao.createOrUpdateTask(task);
+
+            TaskAlarmScheduler taskAlarmScheduler = new TaskAlarmScheduler(getApplicationContext());
+
+            if(task.getReminder() == null)
+                taskAlarmScheduler.cancelAlarm(task);
+            else
+                taskAlarmScheduler.scheduleAlarm(task);
+
             setResult(RESULT_OK, getIntent());
             finish();
         }
@@ -308,10 +374,11 @@ public class EditTaskActivity extends AppCompatActivity {
         if (savedInstanceState.getLong(BundleHelper.DEADLINE) != Long.MIN_VALUE)
             task.setEndTime(new Date(savedInstanceState.getLong(BundleHelper.DEADLINE)));
 
+        if (savedInstanceState.getLong(BundleHelper.REMINDER) != Long.MIN_VALUE)
+            task.setEndTime(new Date(savedInstanceState.getLong(BundleHelper.REMINDER)));
+
         task.setProject(new ProjectDao().getProjectById(savedInstanceState.getString(BundleHelper.PROJECT_ID)));
         task.setPlace(new PlaceDao().getPlaceById(savedInstanceState.getString(BundleHelper.PLACE_ID)));
-
-        //task.setReminder();
 
         fillTaskFields();
     }
@@ -334,9 +401,10 @@ public class EditTaskActivity extends AppCompatActivity {
         else
             outState.putLong(BundleHelper.DEADLINE, Long.MIN_VALUE);
 
-//        if (task.getReminder() != null) {
-//
-//        }
+        if (task.getReminder() != null)
+            outState.putLong(BundleHelper.REMINDER, task.getReminder().getTime());
+        else
+            outState.putLong(BundleHelper.REMINDER, Long.MIN_VALUE);
 
         super.onSaveInstanceState(outState);
     }

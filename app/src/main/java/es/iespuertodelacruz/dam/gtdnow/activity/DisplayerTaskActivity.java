@@ -32,6 +32,7 @@ import es.iespuertodelacruz.dam.gtdnow.model.entity.Project;
 import es.iespuertodelacruz.dam.gtdnow.model.entity.Task;
 import es.iespuertodelacruz.dam.gtdnow.utility.BundleHelper;
 import es.iespuertodelacruz.dam.gtdnow.utility.MenuListener;
+import es.iespuertodelacruz.dam.gtdnow.utility.TaskAlarmScheduler;
 import es.iespuertodelacruz.dam.gtdnow.utility.adapter.GenericDeadlineAdapter;
 import es.iespuertodelacruz.dam.gtdnow.utility.adapter.SpinAdapter;
 import io.realm.Realm;
@@ -283,6 +284,7 @@ public class DisplayerTaskActivity extends AppCompatActivity{
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.contextmenu_delete:
+                                new TaskAlarmScheduler(DisplayerTaskActivity.this).cancelAlarm(taskList.get(position));
                                 taskDao.deleteTask(taskList.get(position));
                                 return true;
                             case R.id.contextmenu_edit:

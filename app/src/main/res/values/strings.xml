@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">GTD Now!</string>
+
+    <string name="channel_name">GTD Now Reminder</string>
+    <string name="channel_description">Recordatorios de GTDNow!</string>
+
     <string name="all_accept">Aceptar</string>
     <string name="all_cancel">Cancelar</string>
     <string name="all_groups">Listas de Tareas</string>
@@ -37,6 +41,7 @@
     <string name="edittask_repeatable_hint">Sin determinar</string>
     <string name="edittask_reminder">Recordatorio:</string>
     <string name="edittask_reminder_hint">Sin determinar</string>
+    <string name="edittask_reminder_error">Recordatorio incorrecto</string>
 
     <string name="editproject_title_create">Nuevo Proyecto</string>
     <string name="editproject_title_edit">Editar Proyecto</string>
@@ -117,5 +122,6 @@
     <string name="main_button_register">Registrar</string>
     <string name="main_button_login">Acceder</string>
     <string name="main_textview_recover">Restablecer contraseña</string>
+    <string name="main_error_message">No se ha podido iniciar sesión</string>
 
 </resources>
