@@ -55,7 +55,7 @@
 
     <string name="editgroup_message_create">Create a new Task Group</string>
     <string name="editgroup_title_create">New Group</string>
-    <string name="editgroup_message_edit">Editar Group</string>
+    <string name="editgroup_message_edit">Edit Group</string>
     <string name="editgroup_name">Name</string>
     <string name="editgroup_name_hint">Insert Name</string>
     <string name="editgroup_task_header">Add Tasks</string>
